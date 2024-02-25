@@ -3,7 +3,7 @@
 	"id": "pronouns",
 	"version": "${version}",
 	"name": "Pronouns",
-	"description": "Adds a system",
+	"description": "Allows you to set your pronouns for others to see.",
 	"authors": [
 		"Pneumono_"
 	],
