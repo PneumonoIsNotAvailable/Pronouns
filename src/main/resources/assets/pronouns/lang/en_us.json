@@ -1,0 +1,4 @@
+{
+    "pronouns.test_message.singular": "%6$s: %1$s, %2$s, %3$s, %4$s, %5$s, singular",
+    "pronouns.test_message.plural": "%6$s: %1$s, %2$s, %3$s, %4$s, %5$s, plural"
+}
