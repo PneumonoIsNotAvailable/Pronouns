@@ -1,4 +1,4 @@
 {
-    "pronouns.test_message.singular": "%6$s: %1$s, %2$s, %3$s, %4$s, %5$s, singular",
-    "pronouns.test_message.plural": "%6$s: %1$s, %2$s, %3$s, %4$s, %5$s, plural"
+    "pronouns.test_message.singular": "Hello! Today I met a player who goes by %s. %s$p has a wonderful personality. That smile of %p$p really makes me happy. I could talk to %o$p all day although %s$p doesn't talk about %r$p much. I wonder if %k$p day has been wonderful. I hope so!",
+    "pronouns.test_message.plural": "Hello! Today I met a player who goes by %s. %s$p have a wonderful personality. That smile of %p$p really makes me happy. I could talk to %o$p all day although %s$p don't talk about %r$p much. I wonder if %k$p day has been wonderful. I hope so!"
 }

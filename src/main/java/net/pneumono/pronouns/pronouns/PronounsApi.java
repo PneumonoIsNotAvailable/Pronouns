@@ -62,16 +62,16 @@ public class PronounsApi {
      * Returns a {@link Text} instance with pronouns as additional arguments. Equivalent to {@link Text#translatable(String, Object[])}, but with relevant pronouns added to the start of the args array.<p>
      * When creating translations involving these pronouns, use:
      * <ul>
-     * <li>'%1$s' for subjective pronouns (he, she, they)
-     * <li>'%2$s' for objective pronouns (him, her, them)
-     * <li>'%3$s' for possessive determiners (his, her, their)
-     * <li>'%4$s' for possessive pronouns (his, hers, theirs)
-     * <li>'%5$s' for reflexive pronouns (himself, herself, themselves)
+     * <li>{@code %s$p} for subjective pronouns (he, she, they)
+     * <li>{@code %o$p} for objective pronouns (him, her, them)
+     * <li>{@code %k$p} for possessive determiners (his, her, their)
+     * <li>{@code %p$p} for possessive pronouns (his, hers, theirs)
+     * <li>{@code %r$p} for reflexive pronouns (himself, herself, themselves)
      * </ul>
-     * '%6$s' and onwards are for any other arguments entered through the {@code args} parameter, in order of entry.<p>
+     * Other arguments are used the same as normal; {@code %s} and {@code %x$s} (where x is any integer) are for any other arguments entered through the {@code args} parameter, in order of entry.<p>
      * Translations must also have two variants, singular and plural, for different types of pronouns. Examples of singular pronouns are he/him or she/her, and the most common plural pronoun is they/them. These are defined with {@code your_translation_key_here.singular} and {@code your_translation_key_here.plural} in your lang file.<p>
-     * An example of a singular translation could be "%1$s loses %3$s braincells when %1$s tries to understand this. %1$s is not okay!"<p>
-     * An example of a plural translation could be "%1$s lose %3$s braincells when %1$s try to understand this. %1$s are not okay!"
+     * An example of a singular translation could be "%s$p loses %k$p braincells when %s$p tries to understand this. %s$p is not okay!"<p>
+     * An example of a plural translation could be "%s$p lose %k$p braincells when %s$p try to understand this. %s$p are not okay!"
      *
      * @param key The translation key of the text.
      * @param pronouns The pronouns used in the text.
@@ -80,10 +80,8 @@ public class PronounsApi {
      */
     public static MutableText getTranslatableTextWithPronouns(String key, PlayerPronouns pronouns, Object... args) {
         PronounSet set = getRandomWeightedSet(pronouns);
-        List<Object> newArgs = new ArrayList<>(List.of(set.subjective(), set.objective(), set.possessiveDeterminer(), set.possessivePronoun(), set.reflexive()));
-        newArgs.addAll(Arrays.asList(args));
-
-        return Text.translatable(key + (set.singular() ? ".singular" : ".plural"), newArgs.toArray());
+        String translationKey = key + (set.singular() ? ".singular" : ".plural");
+        return MutableText.of(new TranslatablePronounsTextContent(translationKey, null, set, args));
     }
 
     /**
