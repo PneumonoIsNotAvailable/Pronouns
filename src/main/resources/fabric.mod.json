@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"net.pneumono.pronouns.PronounsClient"
+		],
+		"modmenu": [
+			"net.pneumono.pronouns.PronounsModMenu"
 		]
 	},
 	"mixins": [
