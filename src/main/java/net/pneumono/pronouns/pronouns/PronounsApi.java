@@ -39,7 +39,7 @@ public class PronounsApi {
     }
 
     /**
-     * Returns the pronouns for the player in question, according to the pronoun list.
+     * Returns the pronouns for the player in question, according to the pronoun map.
      *
      * @param player The player whose pronouns are needed.
      * @return The player's pronouns.
@@ -49,7 +49,7 @@ public class PronounsApi {
     }
 
     /**
-     * Returns the pronouns for the player UUID in question, according to the pronoun list.
+     * Returns the pronouns for the player UUID in question, according to the pronoun map.
      *
      * @param uuid The UUID of the player whose pronouns are needed.
      * @return The player's pronouns.
