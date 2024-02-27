@@ -15,7 +15,10 @@ public class InformPronounsC2SPacket {
     @SuppressWarnings("unused")
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
         try {
-            Pronouns.uuidPronounsMap.put(player.getUuid(), PlayerPronouns.fromJson(JsonParser.parseString(buf.readString()).getAsJsonObject()));
+            String string = buf.readString();
+            PlayerPronouns pronouns = string != null ? PlayerPronouns.fromJson(JsonParser.parseString(string).getAsJsonObject()) : null;
+            Pronouns.uuidPronounsMap.put(player.getUuid(), pronouns);
+
             PronounsApi.sendDistributePronounsPacket(server.getPlayerManager().getPlayerList(), Pronouns.uuidPronounsMap);
         } catch (JsonSyntaxException | IllegalStateException e) {
             Pronouns.LOGGER.warn("Recieved invalid pronoun packet from player " + player.getUuid() + " (" + player.getName().getString() + ")");

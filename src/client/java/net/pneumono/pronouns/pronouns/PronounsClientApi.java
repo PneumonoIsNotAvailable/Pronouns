@@ -26,7 +26,9 @@ public class PronounsClientApi {
      */
     public static void sendInformPronounsPacket(PlayerPronouns pronouns) {
         PacketByteBuf buf = PacketByteBufs.create();
-        buf.writeString(pronouns.toJson().toString());
+        if (pronouns != null) {
+            buf.writeString(pronouns.toJson().toString());
+        }
         ClientPlayNetworking.send(Pronouns.INFORM_PRONOUNS_ID, buf);
     }
 
