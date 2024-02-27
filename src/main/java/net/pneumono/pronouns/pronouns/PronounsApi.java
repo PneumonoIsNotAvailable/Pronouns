@@ -61,7 +61,8 @@ public class PronounsApi {
      * @return The player's pronouns.
      */
     public static PlayerPronouns getPlayerPronouns(UUID uuid) {
-        return Pronouns.uuidPronounsMap.get(uuid);
+        PlayerPronouns pronouns = Pronouns.uuidPronounsMap.get(uuid);
+        return pronouns != null ? pronouns : DEFAULT_PRONOUNS;
     }
 
     /**
