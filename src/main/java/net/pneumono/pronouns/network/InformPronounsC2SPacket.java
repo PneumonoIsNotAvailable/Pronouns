@@ -14,14 +14,15 @@ import net.pneumono.pronouns.pronouns.PronounsApi;
 public class InformPronounsC2SPacket {
     @SuppressWarnings("unused")
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
+        PlayerPronouns pronouns = null;
         try {
             String string = buf.readString();
-            PlayerPronouns pronouns = string != null ? PlayerPronouns.fromJson(JsonParser.parseString(string).getAsJsonObject()) : null;
-            Pronouns.uuidPronounsMap.put(player.getUuid(), pronouns);
-
-            PronounsApi.sendDistributePronounsPacket(server.getPlayerManager().getPlayerList(), Pronouns.uuidPronounsMap);
-        } catch (JsonSyntaxException | IllegalStateException e) {
+            pronouns = string != null && !string.equals("null") ? PlayerPronouns.fromJson(JsonParser.parseString(string).getAsJsonObject()) : null;
+        } catch (JsonSyntaxException | IllegalStateException | IndexOutOfBoundsException e) {
             Pronouns.LOGGER.warn("Recieved invalid pronoun packet from player " + player.getUuid() + " (" + player.getName().getString() + ")");
         }
+
+        Pronouns.uuidPronounsMap.put(player.getUuid(), pronouns);
+        PronounsApi.sendDistributePronounsPacket(server.getPlayerManager().getPlayerList(), Pronouns.uuidPronounsMap);
     }
 }

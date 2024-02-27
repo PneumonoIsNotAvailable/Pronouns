@@ -28,6 +28,8 @@ public class PronounsClientApi {
         PacketByteBuf buf = PacketByteBufs.create();
         if (pronouns != null) {
             buf.writeString(pronouns.toJson().toString());
+        } else {
+            buf.writeString("null");
         }
         ClientPlayNetworking.send(Pronouns.INFORM_PRONOUNS_ID, buf);
     }
@@ -60,8 +62,8 @@ public class PronounsClientApi {
             Reader reader = Files.newBufferedReader(PRONOUNS_FILE.toPath());
             jsonObject = new GsonBuilder().setPrettyPrinting().create().fromJson(reader, JsonObject.class);
             reader.close();
-        } catch (IOException e) {
-            Configs.LOGGER.warn("Could not read pronouns.json!", e);
+        } catch (IOException ignored) {
+            Configs.LOGGER.warn("Could not read pronouns.json! This is likely due to it simply having not been set yet.");
         }
 
         PlayerPronouns pronouns = PlayerPronouns.fromJson(jsonObject);
