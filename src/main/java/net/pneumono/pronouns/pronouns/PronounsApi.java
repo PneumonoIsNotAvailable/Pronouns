@@ -16,9 +16,9 @@ import java.util.*;
 
 public class PronounsApi {
     /**
-     * Sends a packet to all clients to communicate a change in the pronoun list.
+     * Sends a packet to all players in the list to communicate a change in the server-side pronoun map. It is recommended that the packet is simply sent to all players.
      *
-     * @param players The players the packet will be sent to. It is recommended that this is simply everyone.
+     * @param players The players the packet will be sent to.
      * @param pronouns The pronouns and their respective player UUIDs to be sent.
      */
     public static void sendDistributePronounsPacket(List<ServerPlayerEntity> players, Map<UUID, PlayerPronouns> pronouns) {
