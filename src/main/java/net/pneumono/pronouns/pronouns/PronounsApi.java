@@ -47,7 +47,7 @@ public class PronounsApi {
     }
 
     /**
-     * Returns the pronouns for the player in question, according to the pronoun map.
+     * Returns the pronouns for the player in question, according to the pronoun map. If the player has not set their pronouns, returns {@link PronounsApi#DEFAULT_PRONOUNS} (they/them) instead.
      *
      * @param player The player whose pronouns are needed.
      * @return The player's pronouns.
@@ -57,7 +57,7 @@ public class PronounsApi {
     }
 
     /**
-     * Returns the pronouns for the player UUID in question, according to the pronoun map.
+     * Returns the pronouns for the player UUID in question, according to the pronoun map. If the player has not set their pronouns, returns {@link PronounsApi#DEFAULT_PRONOUNS} (they/them) instead.
      *
      * @param uuid The UUID of the player whose pronouns are needed.
      * @return The player's pronouns.
@@ -65,6 +65,17 @@ public class PronounsApi {
     public static PlayerPronouns getPlayerPronouns(UUID uuid) {
         PlayerPronouns pronouns = Pronouns.uuidPronounsMap.get(uuid);
         return pronouns != null ? pronouns : DEFAULT_PRONOUNS;
+    }
+
+    /**
+     * Returns the pronouns for the player UUID in question, according to the pronoun map. If the player has not set their pronouns, will return null instead of {@link PronounsApi#DEFAULT_PRONOUNS} (they/them).<p>
+     * This should be used in situations where it is important to know whether the player has actually set their pronouns, in which {@code null} will represent this.
+     *
+     * @param uuid The UUID of the player whose pronouns are needed.
+     * @return The player's pronouns. May be null.
+     */
+    public static PlayerPronouns getPlayerPronounsNullable(UUID uuid) {
+        return Pronouns.uuidPronounsMap.get(uuid);
     }
 
     /**
