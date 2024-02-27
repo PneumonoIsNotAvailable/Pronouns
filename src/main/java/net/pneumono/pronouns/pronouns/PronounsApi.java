@@ -68,8 +68,12 @@ public class PronounsApi {
      * <li>{@code %p$p} for possessive pronouns (his, hers, theirs)
      * <li>{@code %r$p} for reflexive pronouns (himself, herself, themselves)
      * </ul>
+     * For situations where the first character must be capitalized (e.g. the start of a sentence), the second character can be capitalized. For example, using {@code %S$p} would turn {@code he} into {@code He}.
+     * For situations where the entire pronoun must be capitalized (e.g. to indicate shouting), the fourth character can be capitalized. For example, using {@code %s$P} would turn {@code she} into {@code SHE}.
+     * Using both simultaneously (e.g. {@code %S$P}) will not cause errors, but is redundant and equivalent to {@code %s$P}.<p>
      * Other arguments are used the same as normal; {@code %s} and {@code %x$s} (where x is any integer) are for any other arguments entered through the {@code args} parameter, in order of entry.<p>
-     * Translations must also have two variants, singular and plural, for different types of pronouns. Examples of singular pronouns are he/him or she/her, and the most common plural pronoun is they/them. These are defined with {@code your_translation_key_here.singular} and {@code your_translation_key_here.plural} in your lang file.<p>
+     * Translations must also have two variants, singular and plural, for different types of pronouns. Examples of singular pronouns are he/him or she/her, and the most common plural pronoun is they/them.
+     * These are defined with {@code your_translation_key_here.singular} and {@code your_translation_key_here.plural} in your lang file.<p>
      * An example of a singular translation could be "%s$p loses %k$p braincells when %s$p tries to understand this. %s$p is not okay!"<p>
      * An example of a plural translation could be "%s$p lose %k$p braincells when %s$p try to understand this. %s$p are not okay!"
      *

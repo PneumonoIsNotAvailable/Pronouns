@@ -27,7 +27,7 @@ public class TranslatablePronounsTextContent implements TextContent {
     @Nullable
     private Language languageCache;
     private List<StringVisitable> translations = ImmutableList.of();
-    private static final Pattern ARG_FORMAT = Pattern.compile("%(?:(\\d+|[sokpr])\\$)?([A-Za-z%]|$)");
+    private static final Pattern ARG_FORMAT = Pattern.compile("%(?:(\\d+|[sokprSOKPR])\\$)?([A-Za-z%]|$)");
 
     public TranslatablePronounsTextContent(String key, @Nullable String fallback, PronounSet pronouns, Object[] args) {
         this.key = key;
@@ -77,7 +77,9 @@ public class TranslatablePronounsTextContent implements TextContent {
                     int argIndex = index != null ? Integer.parseInt(index) - 1 : argCounter++;
                     partsConsumer.accept(this.getArg(argIndex));
                 } else if ("p".equals(type)) {
-                    partsConsumer.accept(getPronoun(index));
+                    partsConsumer.accept(getPronoun(index, false));
+                } else if ("P".equals(type)) {
+                    partsConsumer.accept(getPronoun(index, true));
                 } else {
                     throw new PronounTranslationException(this, "Unsupported format: '" + match + "'");
                 }
@@ -95,15 +97,32 @@ public class TranslatablePronounsTextContent implements TextContent {
         }
     }
 
-    public final StringVisitable getPronoun(String pronounType) {
-        return StringVisitable.plain(switch (pronounType) {
+    public final StringVisitable getPronoun(String pronounType, boolean uppercase) {
+        String string = switch (pronounType) {
             case "s" -> pronouns.subjective();
             case "o" -> pronouns.objective();
             case "k" -> pronouns.possessiveDeterminer();
             case "p" -> pronouns.possessivePronoun();
             case "r" -> pronouns.reflexive();
+            case "S" -> capitalizeFirstCharacter(pronouns.subjective());
+            case "O" -> capitalizeFirstCharacter(pronouns.objective());
+            case "K" -> capitalizeFirstCharacter(pronouns.possessiveDeterminer());
+            case "P" -> capitalizeFirstCharacter(pronouns.possessivePronoun());
+            case "R" -> capitalizeFirstCharacter(pronouns.reflexive());
             default -> throw new PronounTranslationException(this, "Unsupported pronoun type: '" + pronounType + "'");
-        });
+        };
+        if (uppercase) {
+            string = string.toUpperCase();
+        }
+        return StringVisitable.plain(string);
+    }
+
+    private static String capitalizeFirstCharacter(String string) {
+        char[] charArray = string.toCharArray();
+        if (charArray.length > 0) {
+            charArray[0] = Character.toUpperCase(charArray[0]);
+        }
+        return String.valueOf(charArray);
     }
 
     public final StringVisitable getArg(int index) {
