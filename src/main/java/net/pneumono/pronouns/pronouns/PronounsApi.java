@@ -16,6 +16,12 @@ import java.util.*;
 
 public class PronounsApi {
     /**
+     * The default set of pronouns, used in the event that pronouns have not been set or an error has occurred.<p>
+     * Literally just they/them.
+     */
+    public static final PlayerPronouns DEFAULT_PRONOUNS = new PlayerPronouns(new PronounSet[]{new PronounSet(1, "they", "them", "their", "theirs", "themselves", false)}, "they/them");
+
+    /**
      * Sends a packet to all players in the list to communicate a change in the server-side pronoun map. It is recommended that the packet is simply sent to all players.
      *
      * @param players The players the packet will be sent to.
