@@ -3,6 +3,7 @@ package net.pneumono.pronouns.pronouns;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import net.minecraft.util.math.MathHelper;
 
 public record PronounSet(int weight, String subjective, String objective, String possessiveDeterminer, String possessivePronoun, String reflexive, boolean singular) {
     public static PronounSet fromJson(JsonObject json) {
@@ -17,7 +18,7 @@ public record PronounSet(int weight, String subjective, String objective, String
 
         primitive = json.getAsJsonPrimitive("weight");
         if (primitive != null) {
-            weight = primitive.getAsInt();
+            weight = MathHelper.clamp(primitive.getAsInt(), 1, 5);
         }
 
         primitive = json.getAsJsonPrimitive("subjective");
