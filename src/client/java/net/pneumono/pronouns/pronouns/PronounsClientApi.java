@@ -45,7 +45,7 @@ public class PronounsClientApi {
             Writer writer = Files.newBufferedWriter(PRONOUNS_FILE.toPath());
             (new GsonBuilder().setPrettyPrinting().create()).toJson(pronouns.toJson(), writer);
             writer.close();
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             Configs.LOGGER.error("Could not write pronouns.json!", e);
         }
     }

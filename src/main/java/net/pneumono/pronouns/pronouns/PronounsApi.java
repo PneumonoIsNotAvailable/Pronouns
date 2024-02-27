@@ -34,7 +34,9 @@ public class PronounsApi {
         for (Map.Entry<UUID, PlayerPronouns> entry : pronouns.entrySet()) {
             JsonObject object = new JsonObject();
             object.add("uuid", new JsonPrimitive(entry.getKey().toString()));
-            object.add("pronouns", entry.getValue().toJson());
+
+            PlayerPronouns playerPronouns = entry.getValue();
+            object.add("pronouns", playerPronouns != null ? playerPronouns.toJson() : new JsonObject());
             array.add(object);
         }
 
@@ -82,7 +84,8 @@ public class PronounsApi {
      * Translations must also have two variants, singular and plural, for different types of pronouns. Examples of singular pronouns are he/him or she/her, and the most common plural pronoun is they/them.
      * These are defined with {@code your_translation_key_here.singular} and {@code your_translation_key_here.plural} in your lang file.<p>
      * An example of a singular translation could be "%s$p loses %k$p braincells when %s$p tries to understand this. %s$p is not okay!"<p>
-     * An example of a plural translation could be "%s$p lose %k$p braincells when %s$p try to understand this. %s$p are not okay!"
+     * An example of a plural translation could be "%s$p lose %k$p braincells when %s$p try to understand this. %s$p are not okay!"<p>
+     * If the provided pronouns are null, {@link PronounsApi#DEFAULT_PRONOUNS} will be used (they/them).
      *
      * @param key The translation key of the text.
      * @param pronouns The pronouns used in the text.
@@ -90,13 +93,14 @@ public class PronounsApi {
      * @return A translatable text object with pronouns as additional arguments.
      */
     public static MutableText getTranslatableTextWithPronouns(String key, PlayerPronouns pronouns, Object... args) {
-        PronounSet set = getRandomWeightedSet(pronouns);
+        PronounSet set = getRandomWeightedSet(pronouns != null ? pronouns : DEFAULT_PRONOUNS);
         String translationKey = key + (set.singular() ? ".singular" : ".plural");
         return MutableText.of(new TranslatablePronounsTextContent(translationKey, null, set, args));
     }
 
     /**
-     * Returns a random pronoun set from a player's pronouns based on the weight of the set.
+     * Returns a random pronoun set from a player's pronouns based on the weight of the set.<p>
+     * If the provided pronouns are null, {@link PronounsApi#DEFAULT_PRONOUNS} will be used (they/them).
      *
      * @param pronouns The player pronouns one pronoun set will be picked from.
      * @return The set picked.
