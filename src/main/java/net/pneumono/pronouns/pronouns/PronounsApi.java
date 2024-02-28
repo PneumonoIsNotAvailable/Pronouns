@@ -42,7 +42,7 @@ public class PronounsApi {
 
         buf.writeString(array.toString());
         for (ServerPlayerEntity player : players) {
-            ServerPlayNetworking.send(player, Pronouns.INFORM_PRONOUNS_ID, buf);
+            ServerPlayNetworking.send(player, Pronouns.DISTRIBUTE_PRONOUNS_ID, buf);
         }
     }
 
