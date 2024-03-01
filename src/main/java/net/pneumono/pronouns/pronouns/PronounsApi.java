@@ -14,6 +14,7 @@ import net.pneumono.pronouns.Pronouns;
 
 import java.util.*;
 
+@SuppressWarnings("unused")
 public class PronounsApi {
     /**
      * The default set of pronouns, used in the event that pronouns have not been set or an error has occurred.<p>
