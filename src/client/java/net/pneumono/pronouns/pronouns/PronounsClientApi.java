@@ -63,7 +63,7 @@ public class PronounsClientApi {
             jsonObject = new GsonBuilder().setPrettyPrinting().create().fromJson(reader, JsonObject.class);
             reader.close();
         } catch (IOException ignored) {
-            Configs.LOGGER.warn("Could not read pronouns.json! This is likely due to it simply having not been set yet.");
+            Configs.LOGGER.warn("Could not read pronouns.json! This is likely due to it simply having not been set yet, but if it has, this is probably an issue.");
         }
 
         PlayerPronouns pronouns = PlayerPronouns.fromJson(jsonObject);
