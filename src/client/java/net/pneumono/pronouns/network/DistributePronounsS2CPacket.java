@@ -24,8 +24,9 @@ public class DistributePronounsS2CPacket {
         for (JsonElement element : array) {
             JsonObject object = element.getAsJsonObject();
             String uuid = object.getAsJsonPrimitive("uuid").getAsString();
+            JsonObject pronouns = object.getAsJsonObject("pronouns");
 
-            map.put(UUID.fromString(uuid), PlayerPronouns.fromJson(object));
+            map.put(UUID.fromString(uuid), PlayerPronouns.fromJson(pronouns));
         }
 
         Pronouns.uuidPronounsMap = map;
