@@ -9,7 +9,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.pneumono.pneumonocore.config.Configs;
-import net.pneumono.pronouns.event.LeaveServerEvent;
 import net.pneumono.pronouns.network.InformPronounsC2SPacket;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounsApi;
@@ -38,7 +37,7 @@ public class Pronouns implements ModInitializer {
 		Configs.reload(MOD_ID);
 
 		ServerPlayNetworking.registerGlobalReceiver(INFORM_PRONOUNS_ID, InformPronounsC2SPacket::receive);
-		ServerPlayConnectionEvents.DISCONNECT.register(new LeaveServerEvent());
+		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> Pronouns.uuidPronounsMap.remove(handler.getPlayer().getUuid()));
 
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
 			dispatcher.register(literal("pronouns")
