@@ -12,6 +12,7 @@ public record PlayerPronouns(PronounSet[] pronounSets, String abbreviation) {
     public static PlayerPronouns fromJson(JsonObject json) {
         if (json != null) {
             List<PronounSet> setsList = new ArrayList<>();
+
             JsonArray setsJson = json.getAsJsonArray("sets");
             if (setsJson != null) {
                 for (JsonElement setJson : setsJson) {
@@ -19,22 +20,23 @@ public record PlayerPronouns(PronounSet[] pronounSets, String abbreviation) {
                 }
             }
 
-            String abbreviation = "";
+            String abbreviation = null;
             JsonPrimitive primitive = json.getAsJsonPrimitive("abbreviation");
             if (primitive != null) {
                 abbreviation = primitive.getAsString();
             }
 
-            return new PlayerPronouns(setsList.toArray(new PronounSet[0]), abbreviation);
+            if (setsList.size() > 0 && abbreviation != null) {
+                return new PlayerPronouns(setsList.toArray(new PronounSet[0]), abbreviation);
+            }
         }
-
         return null;
     }
 
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
         json.add("sets", PronounSet.toJson(pronounSets()));
-        json.add("abbreviation", new JsonPrimitive(abbreviation()));
+        json.addProperty("abbreviation", abbreviation());
         return json;
     }
 }
