@@ -18,7 +18,7 @@ public record PronounSet(int weight, String subjective, String objective, String
 
         primitive = json.getAsJsonPrimitive("weight");
         if (primitive != null) {
-            weight = MathHelper.clamp(primitive.getAsInt(), 1, 5);
+            weight = MathHelper.clamp(primitive.getAsInt(), 1, 10);
         }
 
         primitive = json.getAsJsonPrimitive("subjective");
@@ -57,7 +57,7 @@ public record PronounSet(int weight, String subjective, String objective, String
     public JsonObject toJson() {
         JsonObject setObject = new JsonObject();
 
-        setObject.add("weight", new JsonPrimitive(weight()));
+        setObject.add("weight", new JsonPrimitive(MathHelper.clamp(weight, 1, 10)));
         setObject.add("subjective", new JsonPrimitive(subjective()));
         setObject.add("objective", new JsonPrimitive(objective()));
         setObject.add("possessive_determiner", new JsonPrimitive(possessiveDeterminer()));
