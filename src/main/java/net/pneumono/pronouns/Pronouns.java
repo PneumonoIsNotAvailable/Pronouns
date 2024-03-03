@@ -7,6 +7,7 @@ import net.minecraft.util.Identifier;
 import net.pneumono.pneumonocore.config.Configs;
 import net.pneumono.pronouns.network.InformPronounsC2SPacket;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
+import net.pneumono.pronouns.pronouns.PronounsApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +30,9 @@ public class Pronouns implements ModInitializer {
 		Configs.reload(MOD_ID);
 
 		ServerPlayNetworking.registerGlobalReceiver(INFORM_PRONOUNS_ID, InformPronounsC2SPacket::receive);
-		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> Pronouns.uuidPronounsMap.remove(handler.getPlayer().getUuid()));
+		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
+			Pronouns.uuidPronounsMap.remove(handler.getPlayer().getUuid());
+			PronounsApi.sendDistributePronounsPacket(server.getPlayerManager().getPlayerList(), uuidPronounsMap);
+		});
 	}
 }
