@@ -105,7 +105,7 @@ public class PronounsApi {
      * @return A translatable text object with pronouns as additional arguments.
      */
     public static MutableText getTranslatableTextWithPronouns(String key, PlayerPronouns pronouns, Object... args) {
-        PronounSet set = getRandomWeightedSet(pronouns != null ? pronouns : DEFAULT_PRONOUNS);
+        PronounSet set = getRandomWeightedSet(pronouns);
         String translationKey = key + (set.singular() ? ".singular" : ".plural");
         return MutableText.of(new TranslatablePronounsTextContent(translationKey, null, set, args));
     }
@@ -118,6 +118,9 @@ public class PronounsApi {
      * @return The set picked.
      */
     public static PronounSet getRandomWeightedSet(PlayerPronouns pronouns) {
+        if (pronouns == null) {
+            pronouns = DEFAULT_PRONOUNS;
+        }
         List<PronounSet> list = new ArrayList<>();
         for (PronounSet set : pronouns.pronounSets()) {
             for (int i = 0; i < set.weight(); ++i) {
