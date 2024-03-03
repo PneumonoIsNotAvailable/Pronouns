@@ -2,6 +2,7 @@ package net.pneumono.pronouns.screen;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
@@ -19,6 +20,7 @@ public class ViewPronounsScreen extends Screen {
     private final UUID player;
     private final String name;
     private ViewPronounsPlayerWidget playerWidget;
+    private ButtonWidget backButton;
     private boolean initialized;
 
     public ViewPronounsScreen(UUID player, String name) {
@@ -48,6 +50,9 @@ public class ViewPronounsScreen extends Screen {
         }
         this.playerWidget.update(this.playerWidget.getScrollAmount());
 
+        ButtonWidget.PressAction action = button -> Objects.requireNonNull(client).setScreen(new ServerPronounsScreen());
+        this.backButton = this.addSelectableChild(ButtonWidget.builder(Text.translatable("gui.pronouns.back"), action).dimensions(this.width / 2 + 61, 73, 50, 14).build());
+
         this.addSelectableChild(this.playerWidget);
         this.initialized = true;
     }
@@ -63,7 +68,8 @@ public class ViewPronounsScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         this.renderBackground(context);
         this.playerWidget.render(context, mouseX, mouseY, delta);
-        context.drawText(Objects.requireNonNull(this.client).textRenderer, Text.translatable("gui.pronouns.name", name), (this.width - 238) / 2 + 13, 76, WHITE_COLOR, false);
+        this.backButton.render(context, mouseX, mouseY, delta);
+        context.drawText(Objects.requireNonNull(this.client).textRenderer, Text.translatable("gui.pronouns.name", name), this.width / 2 - 106, 76, WHITE_COLOR, false);
         super.render(context, mouseX, mouseY, delta);
     }
 

@@ -1,6 +1,7 @@
 {
     "category.pronouns.pronouns": "Pronouns Mod",
     "key.pronouns.screen" : "Open Pronouns Screen",
+    "gui.pronouns.back": "Back",
     "gui.pronouns.screen_title": "Pronouns",
     "gui.pronouns.name": "%s's Pronouns",
     "gui.pronouns.set": "Set %s",
