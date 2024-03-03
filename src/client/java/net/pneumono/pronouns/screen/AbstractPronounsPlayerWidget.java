@@ -20,7 +20,7 @@ public abstract class AbstractPronounsPlayerWidget extends ElementListWidget<Abs
         this.setRenderHorizontalShadows(false);
         this.playerPronouns = playerPronouns;
         selected = new boolean[playerPronouns.pronounSets().length];
-        Arrays.fill(selected, false);
+        Arrays.fill(selected, selected.length <= 1);
     }
 
     public abstract void update(double scrollAmount);
