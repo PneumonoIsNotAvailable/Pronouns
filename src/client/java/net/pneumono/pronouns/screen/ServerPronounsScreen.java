@@ -60,7 +60,7 @@ public class ServerPronounsScreen extends Screen {
         this.playerList.update(uuids, this.playerList.getScrollAmount());
 
         this.editButton = ButtonWidget.builder(
-                Text.translatable("gui.pronouns.edit"), button -> client.setScreen(new EditPronounsScreen(client.getName()))
+                Text.translatable("gui.pronouns.edit"), button -> client.setScreen(new EditPronounsScreen(Objects.requireNonNull(client.player).getName().getString()))
         ).dimensions(this.width / 2 + 60, 74, 50, 15).build();
 
         String string = this.searchBox != null ? this.searchBox.getText() : "";
