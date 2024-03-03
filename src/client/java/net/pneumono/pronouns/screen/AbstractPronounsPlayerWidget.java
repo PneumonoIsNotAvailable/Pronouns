@@ -3,6 +3,7 @@ package net.pneumono.pronouns.screen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
+import net.pneumono.pronouns.pronouns.PronounSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,8 +19,8 @@ public abstract class AbstractPronounsPlayerWidget extends ElementListWidget<Abs
         super(minecraftClient, width, height, top, bottom, itemHeight);
         this.setRenderBackground(false);
         this.setRenderHorizontalShadows(false);
-        this.playerPronouns = playerPronouns;
-        selected = new boolean[playerPronouns.pronounSets().length];
+        this.playerPronouns = playerPronouns != null ? playerPronouns : new PlayerPronouns(new PronounSet[]{}, "");
+        selected = new boolean[this.playerPronouns.pronounSets().length];
         Arrays.fill(selected, false);
     }
 

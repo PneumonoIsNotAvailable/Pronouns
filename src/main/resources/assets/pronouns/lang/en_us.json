@@ -16,6 +16,7 @@
     "gui.pronouns.pronoun_type.possessive_determiner": "Possessive Determiner",
     "gui.pronouns.pronoun_type.possessive_pronoun": "Possessive Pronoun",
     "gui.pronouns.pronoun_type.reflexive": "Reflexive",
+    "gui.pronouns.no_pronouns": "This player has not set their pronouns!",
     "gui.server_pronouns.search_hint": "Search...",
     "gui.server_pronouns.search_empty": "Couldn't find any players with that name",
 
