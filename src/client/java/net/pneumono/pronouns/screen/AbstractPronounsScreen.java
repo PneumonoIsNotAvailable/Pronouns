@@ -75,7 +75,7 @@ public abstract class AbstractPronounsScreen extends Screen {
         this.playerWidget.render(context, mouseX, mouseY, delta);
         this.backButton.render(context, mouseX, mouseY, delta);
 
-        context.drawText(Objects.requireNonNull(this.client).textRenderer, Text.translatable("gui.pronouns.name", name), this.width / 2 - 103, 77, WHITE_COLOR, false);
+        context.drawText(Objects.requireNonNull(this.client).textRenderer, Text.literal(name), this.width / 2 - 103, 77, WHITE_COLOR, false);
         super.render(context, mouseX, mouseY, delta);
     }
 
