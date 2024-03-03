@@ -80,7 +80,7 @@ public class PronounsApi {
     }
 
     /**
-     * Returns a {@link Text} instance with pronouns as additional arguments. Equivalent to {@link Text#translatable(String, Object[])}, but with relevant pronouns added to the start of the args array.<p>
+     * Returns a {@link Text} instance with pronouns as additional arguments. Similar to {@link Text#translatable(String, Object[])}, but can also include pronouns.<p>
      * When creating translations involving these pronouns, use:
      * <ul>
      * <li>{@code %s$p} for subjective pronouns (he, she, they)
