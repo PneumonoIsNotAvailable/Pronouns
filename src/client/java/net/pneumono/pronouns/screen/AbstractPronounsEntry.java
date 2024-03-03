@@ -6,14 +6,14 @@ import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.ColorHelper;
 
-public abstract class ViewPronounsEntry extends ElementListWidget.Entry<ViewPronounsEntry> {
+public abstract class AbstractPronounsEntry extends ElementListWidget.Entry<AbstractPronounsEntry> {
     public static final int WHITE_COLOR = ColorHelper.Argb.getArgb(255, 255, 255, 255);
     public static final int GRAY_COLOR = ColorHelper.Argb.getArgb(255, 74, 74, 74);
 
     public final MinecraftClient client;
     public final boolean indented;
 
-    public ViewPronounsEntry(MinecraftClient client, boolean indented) {
+    public AbstractPronounsEntry(MinecraftClient client, boolean indented) {
         this.client = client;
         this.indented = indented;
     }

@@ -12,36 +12,36 @@ import net.pneumono.pronouns.Pronouns;
 
 import java.util.List;
 
-public class ViewPronounsSetEntry extends ViewPronounsEntry {
-    private final ViewPronounsPlayerWidget parent;
-    private final int index;
-    private final boolean dropped;
-    private final DropDownWidget widget;
+public class ViewPronounsSetEntry extends AbstractPronounsEntry {
+    protected final AbstractPronounsPlayerWidget parent;
+    protected final int index;
+    protected final boolean dropped;
+    protected final DropDownWidget dropDownWidget;
 
-    public ViewPronounsSetEntry(MinecraftClient client, ViewPronounsPlayerWidget parent, int index, boolean dropped) {
+    public ViewPronounsSetEntry(MinecraftClient client, AbstractPronounsPlayerWidget parent, int index, boolean dropped) {
         super(client, false);
         this.parent = parent;
         this.index = index;
         this.dropped = dropped;
-        this.widget = new DropDownWidget();
+        this.dropDownWidget = new DropDownWidget();
     }
 
     @Override
     public List<? extends Selectable> selectableChildren() {
-        return List.of(widget);
+        return List.of(dropDownWidget);
     }
 
     @Override
     public List<? extends Element> children() {
-        return List.of(widget);
+        return List.of(dropDownWidget);
     }
 
     @Override
     public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
         super.render(context, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);
-        this.widget.setX(x + 195);
-        this.widget.setY(y);
-        this.widget.render(context, mouseX, mouseY, tickDelta);
+        this.dropDownWidget.setX(x + 195);
+        this.dropDownWidget.setY(y);
+        this.dropDownWidget.render(context, mouseX, mouseY, tickDelta);
     }
 
     @Override

@@ -35,12 +35,13 @@ public class PronounsClientApi {
     }
 
     /**
-     * Saves a set of player pronouns to pronouns.json.
+     * Saves a set of player pronouns to pronouns.json. Calling this method also updates saved pronouns client-side.
      *
      * @param pronouns The pronouns to be saved.
+     * @return The pronouns written.
      */
     @SuppressWarnings("unused")
-    public static void writePronouns(PlayerPronouns pronouns) {
+    public static PlayerPronouns writePronouns(PlayerPronouns pronouns) {
         try {
             Writer writer = Files.newBufferedWriter(PRONOUNS_FILE.toPath());
             (new GsonBuilder().setPrettyPrinting().create()).toJson(pronouns.toJson(), writer);
@@ -48,6 +49,9 @@ public class PronounsClientApi {
         } catch (IOException | NullPointerException e) {
             Configs.LOGGER.error("Could not write pronouns.json!", e);
         }
+
+        PronounsClient.loadedPronouns = pronouns;
+        return pronouns;
     }
 
     /**

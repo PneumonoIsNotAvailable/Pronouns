@@ -7,9 +7,9 @@ import net.minecraft.text.Text;
 
 import java.util.List;
 
-public class ViewPronounsValueEntry extends ViewPronounsEntry {
-    private final EntryType type;
-    private final String value;
+public class ViewPronounsValueEntry extends AbstractPronounsEntry {
+    protected final EntryType type;
+    protected final String value;
 
     public ViewPronounsValueEntry(MinecraftClient client, EntryType type, String value, boolean indented) {
         super(client, indented);
@@ -29,6 +29,6 @@ public class ViewPronounsValueEntry extends ViewPronounsEntry {
 
     @Override
     public Text getText() {
-        return Text.translatable("gui.pronouns.pronoun_type." + type.name().toLowerCase(), value);
+        return Text.translatable("gui.pronouns.pronoun_type." + type.name().toLowerCase()).append(": " + value);
     }
 }

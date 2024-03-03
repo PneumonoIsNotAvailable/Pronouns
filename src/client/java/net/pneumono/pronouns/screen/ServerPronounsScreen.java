@@ -2,6 +2,7 @@ package net.pneumono.pronouns.screen;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -21,6 +22,7 @@ public class ServerPronounsScreen extends Screen {
     private static final Text EMPTY_SEARCH_TEXT = Text.translatable("gui.server_pronouns.search_empty").formatted(Formatting.GRAY);
 
     private ServerPronounsPlayerListWidget playerList;
+    private ButtonWidget editButton;
     private TextFieldWidget searchBox;
     private String currentSearch = "";
     private boolean initialized;
@@ -57,8 +59,12 @@ public class ServerPronounsScreen extends Screen {
         Collection<UUID> uuids = Objects.requireNonNull(Objects.requireNonNull(this.client).player).networkHandler.getPlayerUuids();
         this.playerList.update(uuids, this.playerList.getScrollAmount());
 
+        this.editButton = ButtonWidget.builder(
+                Text.translatable("gui.pronouns.edit"), button -> client.setScreen(new EditPronounsScreen(client.getName()))
+        ).dimensions(this.width / 2 + 60, 74, 50, 15).build();
+
         String string = this.searchBox != null ? this.searchBox.getText() : "";
-        this.searchBox = new TextFieldWidget(this.textRenderer, this.getSearchBoxX() + 29, 75, 198, 13, SEARCH_TEXT){
+        this.searchBox = new TextFieldWidget(this.textRenderer, this.getSearchBoxX() + 29, 75, 145, 13, SEARCH_TEXT) {
             @Override
             protected MutableText getNarrationMessage() {
                 if (!searchBox.getText().isEmpty() && playerList.isEmpty()) {
@@ -73,8 +79,9 @@ public class ServerPronounsScreen extends Screen {
         this.searchBox.setText(string);
         this.searchBox.setPlaceholder(SEARCH_TEXT);
         this.searchBox.setChangedListener(this::onSearchChange);
-        this.addSelectableChild(this.searchBox);
         this.addSelectableChild(this.playerList);
+        this.addSelectableChild(this.editButton);
+        this.addSelectableChild(this.searchBox);
         this.initialized = true;
     }
 
@@ -94,6 +101,7 @@ public class ServerPronounsScreen extends Screen {
         } else if (!this.searchBox.getText().isEmpty()) {
             context.drawCenteredTextWithShadow(Objects.requireNonNull(this.client).textRenderer, EMPTY_SEARCH_TEXT, this.width / 2, (72 + this.getPlayerListBottom()) / 2, -1);
         }
+        this.editButton.render(context, mouseX, mouseY, delta);
         this.searchBox.render(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
     }
