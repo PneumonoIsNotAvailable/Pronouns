@@ -16,9 +16,9 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class ServerPronounsScreen extends Screen {
-    private static final Identifier VIEW_PRONOUNS_TEXTURE = new Identifier(Pronouns.MOD_ID, "textures/gui/view_pronouns.png");
-    private static final Text SEARCH_TEXT = Text.translatable("gui.view_pronouns.search_hint").formatted(Formatting.ITALIC).formatted(Formatting.GRAY);
-    private static final Text EMPTY_SEARCH_TEXT = Text.translatable("gui.view_pronouns.search_empty").formatted(Formatting.GRAY);
+    private static final Identifier VIEW_PRONOUNS_TEXTURE = new Identifier(Pronouns.MOD_ID, "textures/gui/pronouns.png");
+    private static final Text SEARCH_TEXT = Text.translatable("gui.server_pronouns.search_hint").formatted(Formatting.ITALIC).formatted(Formatting.GRAY);
+    private static final Text EMPTY_SEARCH_TEXT = Text.translatable("gui.server_pronouns.search_empty").formatted(Formatting.GRAY);
 
     private ServerPronounsPlayerListWidget playerList;
     private TextFieldWidget searchBox;
