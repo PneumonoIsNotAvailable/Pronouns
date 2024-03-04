@@ -4,6 +4,7 @@
     "gui.pronouns.edit": "Edit",
     "gui.pronouns.back": "Back",
     "gui.pronouns.save": "Save",
+    "gui.pronouns.skip": "Skip",
     "gui.pronouns.title": "Pronouns",
     "gui.pronouns.add_set": "Add set",
     "gui.pronouns.set": "Set %s",

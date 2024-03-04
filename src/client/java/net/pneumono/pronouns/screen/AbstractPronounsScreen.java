@@ -49,7 +49,6 @@ public abstract class AbstractPronounsScreen extends Screen {
         this.playerWidget.update(this.playerWidget.getScrollAmount());
 
         this.addSelectableChild(this.playerWidget);
-        this.initialized = true;
 
         this.backButton = this.addSelectableChild(ButtonWidget.builder(getReturnText(), getExitAction()).dimensions(this.width / 2 + 60, 74, 50, 15).build());
         this.initialized = true;

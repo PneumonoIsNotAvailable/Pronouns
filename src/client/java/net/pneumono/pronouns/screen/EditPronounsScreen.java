@@ -1,24 +1,37 @@
 package net.pneumono.pronouns.screen;
 
+import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
-import net.pneumono.pronouns.PronounsClient;
+import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounsClientApi;
 
 import java.util.Objects;
 
 public class EditPronounsScreen extends AbstractPronounsScreen {
-    protected EditPronounsScreen(String name) {
+    private final boolean inGame;
+
+    public EditPronounsScreen(String name, boolean inGame) {
         super(name);
+        this.inGame = inGame;
     }
 
     @Override
     public ButtonWidget.PressAction getExitAction() {
         return button -> {
             if (this.playerWidget instanceof EditPronounsPlayerWidget widget) {
-                PronounsClientApi.sendInformPronounsPacket(PronounsClientApi.writePronouns(widget.getPlayerPronouns()));
+                PlayerPronouns pronouns = widget.getPlayerPronouns();
+                PronounsClientApi.writePronouns(pronouns);
+                if (inGame) {
+                    PronounsClientApi.sendInformPronounsPacket(pronouns);
+                }
             }
-            Objects.requireNonNull(client).setScreen(new ServerPronounsScreen());
+
+            if (inGame) {
+                Objects.requireNonNull(client).setScreen(new ServerPronounsScreen());
+            } else {
+                Objects.requireNonNull(client).setScreen(new TitleScreen(true));
+            }
         };
     }
 
@@ -29,6 +42,6 @@ public class EditPronounsScreen extends AbstractPronounsScreen {
 
     @Override
     public AbstractPronounsPlayerWidget createWidget() {
-        return new EditPronounsPlayerWidget(this.client, this.width, this.height, 88, this.getPlayerListBottom(), 24, PronounsClient.loadedPronouns);
+        return new EditPronounsPlayerWidget(this.client, this.width, this.height, 88, this.getPlayerListBottom(), 24, PronounsClientApi.getLoadedPronouns());
     }
 }

@@ -8,7 +8,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.PacketByteBuf;
 import net.pneumono.pneumonocore.config.Configs;
 import net.pneumono.pronouns.Pronouns;
-import net.pneumono.pronouns.PronounsClient;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +15,11 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 
+@SuppressWarnings("unused")
 public class PronounsClientApi {
     public static final File PRONOUNS_FILE = new File(FabricLoader.getInstance().getGameDir().toFile(), "pronouns.json");
+
+    private static PlayerPronouns loadedPronouns;
 
     /**
      * Sends a packet to the server to communicate the client's pronouns.
@@ -38,9 +40,8 @@ public class PronounsClientApi {
      * Saves a set of player pronouns to pronouns.json. Calling this method also updates saved pronouns client-side.
      *
      * @param pronouns The pronouns to be saved.
-     * @return The pronouns written.
      */
-    @SuppressWarnings("unused")
+    @SuppressWarnings("UnusedReturnValue")
     public static PlayerPronouns writePronouns(PlayerPronouns pronouns) {
         try {
             Writer writer = Files.newBufferedWriter(PRONOUNS_FILE.toPath());
@@ -50,7 +51,7 @@ public class PronounsClientApi {
             Configs.LOGGER.error("Could not write pronouns.json!", e);
         }
 
-        PronounsClient.loadedPronouns = pronouns;
+        loadedPronouns = pronouns;
         return pronouns;
     }
 
@@ -71,7 +72,16 @@ public class PronounsClientApi {
         }
 
         PlayerPronouns pronouns = PlayerPronouns.fromJson(jsonObject);
-        PronounsClient.loadedPronouns = pronouns;
+        loadedPronouns = pronouns;
         return pronouns;
+    }
+
+    /**
+     * Returns currently loaded player pronouns.
+     *
+     * @return The currently loaded player pronouns.
+     */
+    public static PlayerPronouns getLoadedPronouns() {
+        return loadedPronouns;
     }
 }
