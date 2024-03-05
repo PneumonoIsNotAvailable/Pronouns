@@ -10,6 +10,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.pneumono.pronouns.Pronouns;
 import net.pneumono.pronouns.PronounsClient;
+import net.pneumono.pronouns.pronouns.PronounsClientApi;
 
 import java.util.Collection;
 import java.util.Locale;
@@ -60,7 +61,7 @@ public class ServerPronounsScreen extends Screen {
         this.playerList.update(uuids, this.playerList.getScrollAmount());
 
         this.editButton = ButtonWidget.builder(
-                Text.translatable("gui.pronouns.edit"), button -> client.setScreen(new EditPronounsScreen(Text.literal(Objects.requireNonNull(client.player).getName().getString()), true))
+                Text.translatable("gui.pronouns.edit"), button -> client.setScreen(new EditPronounsScreen(Text.literal(Objects.requireNonNull(client.player).getName().getString()), true, PronounsClientApi.getLoadedPronouns()))
         ).dimensions(this.width / 2 + 60, 74, 50, 15).build();
 
         String string = this.searchBox != null ? this.searchBox.getText() : "";

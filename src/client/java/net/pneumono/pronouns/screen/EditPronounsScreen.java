@@ -1,5 +1,6 @@
 package net.pneumono.pronouns.screen;
 
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
@@ -11,10 +12,22 @@ import java.util.Objects;
 
 public class EditPronounsScreen extends AbstractPronounsScreen {
     private final boolean inGame;
+    protected ButtonWidget presetsButton;
+    protected PlayerPronouns pronouns;
 
-    public EditPronounsScreen(Text title, boolean inGame) {
+    public EditPronounsScreen(Text title, boolean inGame, PlayerPronouns pronouns) {
         super(title);
         this.inGame = inGame;
+        this.pronouns = pronouns;
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+        this.presetsButton = this.addSelectableChild(ButtonWidget.builder(
+                Text.translatable("gui.pronouns.presets"),
+                button -> Objects.requireNonNull(this.client).setScreen(new PresetsScreen(this.title, this.inGame))
+        ).dimensions(this.width / 2 + 5, 74, 50, 15).build());
     }
 
     @Override
@@ -43,7 +56,7 @@ public class EditPronounsScreen extends AbstractPronounsScreen {
 
     @Override
     public AbstractPronounsPlayerWidget createWidget() {
-        return new EditPronounsPlayerWidget(this.client, this.width, this.height, 88, this.getPlayerListBottom(), 24, PronounsClientApi.getLoadedPronouns());
+        return new EditPronounsPlayerWidget(this.client, this.width, this.height, 88, this.getPlayerListBottom(), 24, pronouns);
     }
 
     @Override
@@ -53,5 +66,11 @@ public class EditPronounsScreen extends AbstractPronounsScreen {
             return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
+    }
+
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
+        this.presetsButton.render(context, mouseX, mouseY, delta);
     }
 }
