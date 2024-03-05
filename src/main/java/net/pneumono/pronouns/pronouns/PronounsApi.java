@@ -19,12 +19,16 @@ public class PronounsApi {
     /**
      * The default pronoun set. Literally just they/them.
      */
-    public static final PronounSet DEFAULT_PRONOUN_SET = new PronounSet(1, "they", "them", "their", "theirs", "themselves", false);
+    public static PronounSet getDefaultPronounSet() {
+        return Presets.getTheyThemSet();
+    }
 
     /**
      * The default player pronouns. Literally just they/them.
      */
-    public static final PlayerPronouns DEFAULT_PLAYER_PRONOUNS = new PlayerPronouns(new PronounSet[]{DEFAULT_PRONOUN_SET}, "they/them");
+    public static PlayerPronouns getDefaultPlayerPronouns() {
+        return Presets.getTheyThemPronouns();
+    }
 
     /**
      * Sends a packet to all players in the list to communicate a change in the server-side pronoun map. It is recommended that the packet is simply sent to all players.
@@ -52,7 +56,7 @@ public class PronounsApi {
     }
 
     /**
-     * Returns the pronouns for the player in question, according to the pronoun map. If the player has not set their pronouns, returns {@link PronounsApi#DEFAULT_PLAYER_PRONOUNS} (they/them) instead.
+     * Returns the pronouns for the player in question, according to the pronoun map. If the player has not set their pronouns, returns {@link PronounsApi#getDefaultPlayerPronouns()} (they/them) instead.
      *
      * @param player The player whose pronouns are needed.
      * @return The player's pronouns.
@@ -62,18 +66,18 @@ public class PronounsApi {
     }
 
     /**
-     * Returns the pronouns for the player UUID in question, according to the pronoun map. If the player has not set their pronouns, returns {@link PronounsApi#DEFAULT_PLAYER_PRONOUNS} (they/them) instead.
+     * Returns the pronouns for the player UUID in question, according to the pronoun map. If the player has not set their pronouns, returns {@link PronounsApi#getDefaultPlayerPronouns()} (they/them) instead.
      *
      * @param uuid The UUID of the player whose pronouns are needed.
      * @return The player's pronouns.
      */
     public static PlayerPronouns getPlayerPronouns(UUID uuid) {
         PlayerPronouns pronouns = Pronouns.uuidPronounsMap.get(uuid);
-        return pronouns != null ? pronouns : DEFAULT_PLAYER_PRONOUNS;
+        return pronouns != null ? pronouns : getDefaultPlayerPronouns();
     }
 
     /**
-     * Returns the pronouns for the player UUID in question, according to the pronoun map. If the player has not set their pronouns, will return null instead of {@link PronounsApi#DEFAULT_PLAYER_PRONOUNS} (they/them).<p>
+     * Returns the pronouns for the player UUID in question, according to the pronoun map. If the player has not set their pronouns, will return null instead of {@link PronounsApi#getDefaultPlayerPronouns()} (they/them).<p>
      * This should be used in situations where it is important to know whether the player has actually set their pronouns, in which {@code null} will represent this.
      *
      * @param uuid The UUID of the player whose pronouns are needed.
@@ -101,7 +105,7 @@ public class PronounsApi {
      * These are defined with {@code your_translation_key_here.singular} and {@code your_translation_key_here.plural} in your lang file.<p>
      * An example of a singular translation could be "%s$p loses %k$p braincells when %s$p tries to understand this. %s$p is not okay!"<p>
      * An example of a plural translation could be "%s$p lose %k$p braincells when %s$p try to understand this. %s$p are not okay!"<p>
-     * If the provided pronouns are null, {@link PronounsApi#DEFAULT_PLAYER_PRONOUNS} will be used (they/them).
+     * If the provided pronouns are null, {@link PronounsApi#getDefaultPlayerPronouns()} will be used (they/them).
      *
      * @param key The translation key of the text.
      * @param pronouns The pronouns used in the text.
@@ -116,14 +120,14 @@ public class PronounsApi {
 
     /**
      * Returns a random pronoun set from a player's pronouns based on the weight of the set.<p>
-     * If the provided pronouns are null, {@link PronounsApi#DEFAULT_PLAYER_PRONOUNS} will be used (they/them).
+     * If the provided pronouns are null, {@link PronounsApi#getDefaultPlayerPronouns()} will be used (they/them).
      *
      * @param pronouns The player pronouns one pronoun set will be picked from.
      * @return The set picked.
      */
     public static PronounSet getRandomWeightedSet(PlayerPronouns pronouns) {
         if (pronouns == null) {
-            pronouns = DEFAULT_PLAYER_PRONOUNS;
+            pronouns = getDefaultPlayerPronouns();
         }
         List<PronounSet> list = new ArrayList<>();
         for (PronounSet set : pronouns.pronounSets()) {
