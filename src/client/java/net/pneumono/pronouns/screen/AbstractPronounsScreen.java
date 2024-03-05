@@ -7,7 +7,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 import net.pneumono.pronouns.Pronouns;
-import net.pneumono.pronouns.PronounsClient;
 
 import java.util.Objects;
 
@@ -76,14 +75,5 @@ public abstract class AbstractPronounsScreen extends Screen {
 
         context.drawText(Objects.requireNonNull(this.client).textRenderer, Text.literal(name), this.width / 2 - 103, 77, WHITE_COLOR, false);
         super.render(context, mouseX, mouseY, delta);
-    }
-
-    @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (PronounsClient.pronounScreenKeybind.matchesKey(keyCode, scanCode)) {
-            Objects.requireNonNull(this.client).setScreen(null);
-            return true;
-        }
-        return super.keyPressed(keyCode, scanCode, modifiers);
     }
 }
