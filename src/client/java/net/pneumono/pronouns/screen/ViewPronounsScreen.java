@@ -11,8 +11,8 @@ import java.util.UUID;
 public class ViewPronounsScreen extends AbstractPronounsScreen {
     private final UUID player;
 
-    public ViewPronounsScreen(UUID player, String name) {
-        super(name);
+    public ViewPronounsScreen(Text title, UUID player) {
+        super(title);
         this.player = player;
     }
 

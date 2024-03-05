@@ -14,14 +14,12 @@ public abstract class AbstractPronounsScreen extends Screen {
     public static final Identifier VIEW_PRONOUNS_TEXTURE = new Identifier(Pronouns.MOD_ID, "textures/gui/pronouns.png");
     public static final int WHITE_COLOR = ColorHelper.Argb.getArgb(255, 255, 255, 255);
 
-    protected final String name;
     protected AbstractPronounsPlayerWidget playerWidget;
     protected ButtonWidget backButton;
     protected boolean initialized;
 
-    protected AbstractPronounsScreen(String name) {
-        super(Text.translatable("gui.pronouns.title"));
-        this.name = name;
+    protected AbstractPronounsScreen(Text title) {
+        super(title);
     }
 
     public int getScreenHeight() {
@@ -73,7 +71,7 @@ public abstract class AbstractPronounsScreen extends Screen {
         this.playerWidget.render(context, mouseX, mouseY, delta);
         this.backButton.render(context, mouseX, mouseY, delta);
 
-        context.drawText(Objects.requireNonNull(this.client).textRenderer, Text.literal(name), this.width / 2 - 103, 77, WHITE_COLOR, false);
+        context.drawText(Objects.requireNonNull(this.client).textRenderer, this.title, this.width / 2 - 103, 77, WHITE_COLOR, false);
         super.render(context, mouseX, mouseY, delta);
     }
 }

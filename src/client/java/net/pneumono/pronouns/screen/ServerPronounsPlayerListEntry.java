@@ -87,7 +87,7 @@ public class ServerPronounsPlayerListEntry extends ElementListWidget.Entry<Serve
 
     public class ViewPronounsIconWidget extends ButtonWidget {
         ViewPronounsIconWidget() {
-            super(0, 0, 20, 20, Text.translatable("gui.pronouns.title"), button -> ServerPronounsPlayerListEntry.this.client.setScreen(new ViewPronounsScreen(uuid, name)), DEFAULT_NARRATION_SUPPLIER);
+            super(0, 0, 20, 20, Text.translatable("gui.pronouns.title"), button -> ServerPronounsPlayerListEntry.this.client.setScreen(new ViewPronounsScreen(Text.literal(name), uuid)), DEFAULT_NARRATION_SUPPLIER);
         }
 
         @Override

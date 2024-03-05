@@ -11,7 +11,7 @@ public class SetupPronounsScreen extends EditPronounsScreen {
     public ButtonWidget skipButton;
 
     public SetupPronounsScreen() {
-        super("Setup", false);
+        super(Text.translatable("gui.pronouns.setup"), false);
     }
 
     @Override

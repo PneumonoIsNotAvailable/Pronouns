@@ -12,8 +12,8 @@ import java.util.Objects;
 public class EditPronounsScreen extends AbstractPronounsScreen {
     private final boolean inGame;
 
-    public EditPronounsScreen(String name, boolean inGame) {
-        super(name);
+    public EditPronounsScreen(Text title, boolean inGame) {
+        super(title);
         this.inGame = inGame;
     }
 
