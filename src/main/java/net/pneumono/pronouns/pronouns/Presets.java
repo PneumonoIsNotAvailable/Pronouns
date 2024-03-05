@@ -18,6 +18,15 @@ public class Presets {
         return new PronounSet(1, "it", "it", "its", "its", "itself", true);
     }
 
+    public static PronounSet[] getAllSets() {
+        return new PronounSet[]{
+                getHeHimSet(),
+                getSheHerSet(),
+                getTheyThemSet(),
+                getItItsSet()
+        };
+    }
+
     public static PlayerPronouns getHeHimPronouns() {
         return new PlayerPronouns(new PronounSet[]{getHeHimSet()}, "he/him");
     }
@@ -52,5 +61,19 @@ public class Presets {
 
     public static PlayerPronouns getItItsPronouns() {
         return new PlayerPronouns(new PronounSet[]{getItItsSet()}, "it/its");
+    }
+
+    public static PlayerPronouns[] getAllPronouns() {
+        return new PlayerPronouns[]{
+                getHeHimPronouns(),
+                getHeTheyPronouns(),
+                getHeItPronouns(),
+                getSheHerPronouns(),
+                getSheTheyPronouns(),
+                getSheItPronouns(),
+                getTheyThemPronouns(),
+                getTheyItPronouns(),
+                getItItsPronouns()
+        };
     }
 }
