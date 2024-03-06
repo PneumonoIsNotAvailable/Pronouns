@@ -17,6 +17,9 @@ import java.nio.file.Files;
 
 @SuppressWarnings("unused")
 public class PronounsClientApi {
+    /**
+     * The file where pronouns are saved.
+     */
     public static final File PRONOUNS_FILE = new File(FabricLoader.getInstance().getGameDir().toFile(), "pronouns.json");
 
     private static PlayerPronouns loadedPronouns;
