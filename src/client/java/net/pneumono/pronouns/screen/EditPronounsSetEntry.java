@@ -14,7 +14,7 @@ import net.pneumono.pronouns.pronouns.PronounSet;
 
 import java.util.List;
 
-public class EditPronounsSetEntry extends ViewPronounsSetEntry {
+public class EditPronounsSetEntry extends AbstractPronounsSetEntry {
     private final boolean alone;
     private final DeleteWidget deleteWidget;
 

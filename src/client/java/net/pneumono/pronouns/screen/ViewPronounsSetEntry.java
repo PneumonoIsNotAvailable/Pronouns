@@ -5,53 +5,45 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.pneumono.pronouns.Pronouns;
+import net.pneumono.pronouns.pronouns.PronounsApi;
 
 import java.util.List;
 
-public class ViewPronounsSetEntry extends AbstractPronounsEntry {
-    protected final AbstractPronounsPlayerWidget parent;
-    protected final int index;
-    protected final boolean dropped;
-    protected final DropDownWidget dropDownWidget;
+public class ViewPronounsSetEntry extends AbstractPronounsSetEntry {
+    private final ExampleTextWidget exampleTextWidget;
 
-    public ViewPronounsSetEntry(MinecraftClient client, AbstractPronounsPlayerWidget parent, int index, boolean dropped) {
-        super(client, false);
-        this.parent = parent;
-        this.index = index;
-        this.dropped = dropped;
-        this.dropDownWidget = new DropDownWidget();
-    }
-
-    @Override
-    public List<? extends Selectable> selectableChildren() {
-        return List.of(dropDownWidget);
-    }
-
-    @Override
-    public List<? extends Element> children() {
-        return List.of(dropDownWidget);
+    public ViewPronounsSetEntry(MinecraftClient client, ViewPronounsPlayerWidget parent, int index, boolean dropped) {
+        super(client, parent, index, dropped);
+        this.exampleTextWidget = new ExampleTextWidget();
     }
 
     @Override
     public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
         super.render(context, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);
-        this.dropDownWidget.setX(x + 195);
-        this.dropDownWidget.setY(y);
-        this.dropDownWidget.render(context, mouseX, mouseY, tickDelta);
+        this.exampleTextWidget.setX(x + 173);
+        this.exampleTextWidget.setY(y);
+        this.exampleTextWidget.render(context, mouseX, mouseY, tickDelta);
     }
 
     @Override
-    public Text getText() {
-        return Text.translatable("gui.pronouns.set", this.index + 1);
+    public List<? extends Selectable> selectableChildren() {
+        return List.of(dropDownWidget, exampleTextWidget);
     }
 
-    public class DropDownWidget extends ButtonWidget {
-        DropDownWidget() {
-            super(0, 0, 20, 20, Text.translatable("gui.pronouns.screen_title"), button -> parent.setSelected(index, !parent.getSelected(index)), DEFAULT_NARRATION_SUPPLIER);
+    @Override
+    public List<? extends Element> children() {
+        return List.of(dropDownWidget, exampleTextWidget);
+    }
+
+    public class ExampleTextWidget extends ButtonWidget {
+        ExampleTextWidget() {
+            super(0, 0, 20, 20, Text.translatable("gui.pronouns.screen_title"), button -> {}, DEFAULT_NARRATION_SUPPLIER);
+            this.setTooltip(Tooltip.of(PronounsApi.getTranslatableTextWithPronouns("pronouns.test_message", parent.getPlayerPronouns().getPronounSets()[index], parent.getPlayerPronouns().getAbbreviation())));
         }
 
         @Override
@@ -59,7 +51,7 @@ public class ViewPronounsSetEntry extends AbstractPronounsEntry {
             super.renderButton(context, mouseX, mouseY, delta);
             int i = this.getX() + 3;
             int j = this.getY() + 3;
-            this.drawTexture(context, new Identifier(Pronouns.MOD_ID, "textures/gui/drop_down.png"), i, j, (dropped ? 15 : 0), 0, 0, 15, 15, 30, 15);
+            this.drawTexture(context, new Identifier(Pronouns.MOD_ID, "textures/gui/information.png"), i, j, 0, 0, 0, 15, 15, 15, 15);
         }
 
         @Override
