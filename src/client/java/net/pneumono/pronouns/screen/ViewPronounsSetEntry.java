@@ -43,7 +43,7 @@ public class ViewPronounsSetEntry extends AbstractPronounsSetEntry {
     public class ExampleTextWidget extends ButtonWidget {
         ExampleTextWidget() {
             super(0, 0, 20, 20, Text.translatable("gui.pronouns.screen_title"), button -> {}, DEFAULT_NARRATION_SUPPLIER);
-            this.setTooltip(Tooltip.of(PronounsApi.getTranslatableTextWithPronouns("pronouns.test_message", parent.getPlayerPronouns().getPronounSets()[index], parent.getPlayerPronouns().getAbbreviation())));
+            this.setTooltip(Tooltip.of(PronounsApi.getTranslatableTextWithPronouns("gui.pronouns.example_message", parent.getPlayerPronouns().getPronounSets()[index], parent.getPlayerPronouns().getAbbreviation())));
         }
 
         @Override
