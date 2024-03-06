@@ -89,6 +89,7 @@ public class PronounsApi {
 
     /**
      * Returns a {@link Text} instance with pronouns as additional arguments. Similar to {@link Text#translatable(String, Object[])}, but can also include pronouns.<p>
+     * This method selects a random pronoun set from the provided player pronouns and then returns text from {@link PronounsApi#getTranslatableTextWithPronouns(String, PronounSet, Object...)} using that set.<p>
      * When creating translations involving these pronouns, use:
      * <ul>
      * <li>{@code %s$p} for subjective pronouns (he, she, they)
@@ -114,8 +115,37 @@ public class PronounsApi {
      */
     public static MutableText getTranslatableTextWithPronouns(String key, PlayerPronouns pronouns, Object... args) {
         PronounSet set = getRandomWeightedSet(pronouns);
-        String translationKey = key + (set.isSingular() ? ".singular" : ".plural");
-        return MutableText.of(new TranslatablePronounsTextContent(translationKey, null, set, args));
+        return getTranslatableTextWithPronouns(key, set, args);
+    }
+
+    /**
+     * Returns a {@link Text} instance with pronouns as additional arguments. Similar to {@link Text#translatable(String, Object[])}, but can also include pronouns.<p>
+     * When creating translations involving these pronouns, use:
+     * <ul>
+     * <li>{@code %s$p} for subjective pronouns (he, she, they)
+     * <li>{@code %o$p} for objective pronouns (him, her, them)
+     * <li>{@code %k$p} for possessive determiners (his, her, their)
+     * <li>{@code %p$p} for possessive pronouns (his, hers, theirs)
+     * <li>{@code %r$p} for reflexive pronouns (himself, herself, themselves)
+     * </ul>
+     * For situations where the first character must be capitalized (e.g. the start of a sentence), the second character can be capitalized. For example, using {@code %S$p} would turn {@code he} into {@code He}.
+     * For situations where the entire pronoun must be capitalized (e.g. to indicate shouting), the fourth character can be capitalized. For example, using {@code %s$P} would turn {@code she} into {@code SHE}.
+     * Using both simultaneously (e.g. {@code %S$P}) will not cause errors, but is redundant and equivalent to {@code %s$P}.<p>
+     * Other arguments are used the same as normal; {@code %s} and {@code %x$s} (where x is any integer) are for any other arguments entered through the {@code args} parameter, in order of entry.<p>
+     * Translations must also have two variants, singular and plural, for different types of pronouns. Examples of singular pronouns are he/him or she/her, and the most common plural pronoun is they/them.
+     * These are defined with {@code your_translation_key_here.singular} and {@code your_translation_key_here.plural} in your lang file.<p>
+     * An example of a singular translation could be "%s$p loses %k$p braincells when %s$p tries to understand this. %s$p is not okay!"<p>
+     * An example of a plural translation could be "%s$p lose %k$p braincells when %s$p try to understand this. %s$p are not okay!"<p>
+     * If the provided pronouns are null, {@link PronounsApi#getDefaultPlayerPronouns()} will be used (they/them).
+     *
+     * @param key The translation key of the text.
+     * @param pronouns The pronouns used in the text.
+     * @param args Additional arguments for the text.
+     * @return A translatable text object with pronouns as additional arguments.
+     */
+    public static MutableText getTranslatableTextWithPronouns(String key, PronounSet pronouns, Object... args) {
+        String translationKey = key + (pronouns.isSingular() ? ".singular" : ".plural");
+        return MutableText.of(new TranslatablePronounsTextContent(translationKey, null, pronouns, args));
     }
 
     /**
