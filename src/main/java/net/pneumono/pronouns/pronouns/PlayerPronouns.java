@@ -8,7 +8,15 @@ import com.google.gson.JsonPrimitive;
 import java.util.ArrayList;
 import java.util.List;
 
-public record PlayerPronouns(PronounSet[] pronounSets, String abbreviation) {
+public class PlayerPronouns {
+    private PronounSet[] pronounSets;
+    private String abbreviation;
+
+    public PlayerPronouns(PronounSet[] pronounSets, String abbreviation) {
+        this.pronounSets = pronounSets;
+        this.abbreviation = abbreviation;
+    }
+
     public static PlayerPronouns fromJson(JsonObject json) {
         if (json != null) {
             List<PronounSet> setsList = new ArrayList<>();
@@ -35,8 +43,26 @@ public record PlayerPronouns(PronounSet[] pronounSets, String abbreviation) {
 
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
-        json.add("sets", PronounSet.toJson(pronounSets()));
-        json.addProperty("abbreviation", abbreviation());
+        json.add("sets", PronounSet.toJson(pronounSets));
+        json.addProperty("abbreviation", abbreviation);
         return json;
+    }
+
+    public PronounSet[] getPronounSets() {
+        return pronounSets;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    @SuppressWarnings("unused")
+    public void setPronounSets(PronounSet[] pronounSets) {
+        this.pronounSets = pronounSets;
+    }
+
+    @SuppressWarnings("unused")
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 }

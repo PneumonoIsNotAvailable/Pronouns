@@ -42,24 +42,24 @@ public class EditPronounsValueEntry extends ViewPronounsValueEntry {
 
     private PlayerPronouns getPronounsWithValue(String value) {
         if (type == EntryType.ABBREVIATION) {
-            return new PlayerPronouns(parent.playerPronouns.pronounSets(), value);
+            return new PlayerPronouns(parent.playerPronouns.getPronounSets(), value);
         }
 
-        PronounSet[] sets = parent.playerPronouns.pronounSets();
+        PronounSet[] sets = parent.playerPronouns.getPronounSets();
         PronounSet oldSet = sets[index];
 
         sets[index] = switch (type) {
-            case WEIGHT -> new PronounSet(Integer.parseInt(value), oldSet.subjective(), oldSet.objective(), oldSet.possessiveDeterminer(), oldSet.possessivePronoun(), oldSet.reflexive(), oldSet.singular());
-            case SINGULAR -> new PronounSet(oldSet.weight(), oldSet.subjective(), oldSet.objective(), oldSet.possessiveDeterminer(), oldSet.possessivePronoun(), oldSet.reflexive(), Boolean.parseBoolean(value));
-            case SUBJECTIVE -> new PronounSet(oldSet.weight(), value, oldSet.objective(), oldSet.possessiveDeterminer(), oldSet.possessivePronoun(), oldSet.reflexive(), oldSet.singular());
-            case OBJECTIVE -> new PronounSet(oldSet.weight(), oldSet.subjective(), value, oldSet.possessiveDeterminer(), oldSet.possessivePronoun(), oldSet.reflexive(), oldSet.singular());
-            case POSSESSIVE_DETERMINER -> new PronounSet(oldSet.weight(), oldSet.subjective(), oldSet.objective(), value, oldSet.possessivePronoun(), oldSet.reflexive(), oldSet.singular());
-            case POSSESSIVE_PRONOUN -> new PronounSet(oldSet.weight(), oldSet.subjective(), oldSet.objective(), oldSet.possessiveDeterminer(), value, oldSet.reflexive(), oldSet.singular());
-            case REFLEXIVE -> new PronounSet(oldSet.weight(), oldSet.subjective(), oldSet.objective(), oldSet.possessiveDeterminer(), oldSet.possessivePronoun(), value, oldSet.singular());
+            case WEIGHT -> oldSet.setWeight(Integer.parseInt(value));
+            case SINGULAR -> oldSet.setSingular(Boolean.parseBoolean(value));
+            case SUBJECTIVE -> oldSet.setSubjective(value);
+            case OBJECTIVE -> oldSet.setObjective(value);
+            case POSSESSIVE_DETERMINER -> oldSet.setPossessiveDeterminer(value);
+            case POSSESSIVE_PRONOUN -> oldSet.setPossessivePronoun(value);
+            case REFLEXIVE -> oldSet.setReflexive(value);
             default -> throw new IllegalStateException("Unexpected value: " + type);
         };
 
-        return new PlayerPronouns(sets, parent.playerPronouns.abbreviation());
+        return new PlayerPronouns(sets, parent.playerPronouns.getAbbreviation());
     }
 
     @Override

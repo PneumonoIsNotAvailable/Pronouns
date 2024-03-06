@@ -50,7 +50,7 @@ public class PresetsEntry extends ElementListWidget.Entry<PresetsEntry> {
 
         context.fill(x, y, x + entryWidth, y + entryHeight, GRAY_COLOR);
 
-        context.drawText(this.client.textRenderer, this.pronouns.abbreviation(), textX, textY, WHITE_COLOR, false);
+        context.drawText(this.client.textRenderer, this.pronouns.getAbbreviation(), textX, textY, WHITE_COLOR, false);
 
         selectWidget.setX(x + 150);
         selectWidget.setY(y);

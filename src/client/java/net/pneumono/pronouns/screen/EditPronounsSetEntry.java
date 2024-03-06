@@ -45,11 +45,11 @@ public class EditPronounsSetEntry extends ViewPronounsSetEntry {
     }
 
     private PlayerPronouns getPronounsWithout() {
-        PronounSet[] oldSets = parent.playerPronouns.pronounSets();
+        PronounSet[] oldSets = parent.playerPronouns.getPronounSets();
         PronounSet[] newSets = new PronounSet[oldSets.length - 1];
         System.arraycopy(oldSets, 0, newSets, 0, newSets.length);
 
-        return new PlayerPronouns(newSets, parent.playerPronouns.abbreviation());
+        return new PlayerPronouns(newSets, parent.playerPronouns.getAbbreviation());
     }
 
     public class DeleteWidget extends ButtonWidget {

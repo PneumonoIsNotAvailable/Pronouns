@@ -99,16 +99,16 @@ public class TranslatablePronounsTextContent implements TextContent {
 
     public final StringVisitable getPronoun(String pronounType, boolean uppercase) {
         String string = switch (pronounType) {
-            case "s" -> pronouns.subjective();
-            case "o" -> pronouns.objective();
-            case "k" -> pronouns.possessiveDeterminer();
-            case "p" -> pronouns.possessivePronoun();
-            case "r" -> pronouns.reflexive();
-            case "S" -> capitalizeFirstCharacter(pronouns.subjective());
-            case "O" -> capitalizeFirstCharacter(pronouns.objective());
-            case "K" -> capitalizeFirstCharacter(pronouns.possessiveDeterminer());
-            case "P" -> capitalizeFirstCharacter(pronouns.possessivePronoun());
-            case "R" -> capitalizeFirstCharacter(pronouns.reflexive());
+            case "s" -> pronouns.getSubjective();
+            case "o" -> pronouns.getObjective();
+            case "k" -> pronouns.getPossessiveDeterminer();
+            case "p" -> pronouns.getPossessivePronoun();
+            case "r" -> pronouns.getReflexive();
+            case "S" -> capitalizeFirstCharacter(pronouns.getSubjective());
+            case "O" -> capitalizeFirstCharacter(pronouns.getObjective());
+            case "K" -> capitalizeFirstCharacter(pronouns.getPossessiveDeterminer());
+            case "P" -> capitalizeFirstCharacter(pronouns.getPossessivePronoun());
+            case "R" -> capitalizeFirstCharacter(pronouns.getReflexive());
             default -> throw new PronounTranslationException(this, "Unsupported pronoun type: '" + pronounType + "'");
         };
         if (uppercase) {

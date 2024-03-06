@@ -55,12 +55,12 @@ public class EditPronounsAddSetEntry extends AbstractPronounsEntry {
     }
 
     private PlayerPronouns getPronounsWithNew() {
-        PronounSet[] oldSets = parent.playerPronouns.pronounSets();
+        PronounSet[] oldSets = parent.playerPronouns.getPronounSets();
         PronounSet[] newSets = new PronounSet[oldSets.length + 1];
         System.arraycopy(oldSets, 0, newSets, 0, oldSets.length);
         newSets[newSets.length - 1] = PronounsApi.getDefaultPronounSet();
 
-        return new PlayerPronouns(newSets, parent.playerPronouns.abbreviation());
+        return new PlayerPronouns(newSets, parent.playerPronouns.getAbbreviation());
     }
 
     public class AddWidget extends ButtonWidget {

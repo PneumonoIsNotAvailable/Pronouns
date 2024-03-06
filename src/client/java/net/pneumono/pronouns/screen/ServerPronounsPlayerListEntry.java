@@ -65,7 +65,7 @@ public class ServerPronounsPlayerListEntry extends ElementListWidget.Entry<Serve
             this.noWidget.render(context, mouseX, mouseY, tickDelta);
         }
 
-        String appended = hasPronouns ? " (" + pronouns.abbreviation() + ")" : "";
+        String appended = hasPronouns ? " (" + pronouns.getAbbreviation() + ")" : "";
         context.drawText(this.client.textRenderer, this.name + appended, k, l, hasPronouns ? WHITE_COLOR : RED_COLOR, false);
     }
 

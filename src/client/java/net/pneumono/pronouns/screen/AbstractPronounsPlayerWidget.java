@@ -20,7 +20,7 @@ public abstract class AbstractPronounsPlayerWidget extends ElementListWidget<Abs
         this.setRenderBackground(false);
         this.setRenderHorizontalShadows(false);
         this.playerPronouns = playerPronouns != null ? playerPronouns : new PlayerPronouns(new PronounSet[]{}, "");
-        selected = new boolean[this.playerPronouns.pronounSets().length];
+        selected = new boolean[this.playerPronouns.getPronounSets().length];
         Arrays.fill(selected, false);
     }
 

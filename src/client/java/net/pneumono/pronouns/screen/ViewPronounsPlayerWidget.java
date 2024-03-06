@@ -11,21 +11,21 @@ public class ViewPronounsPlayerWidget extends AbstractPronounsPlayerWidget {
 
     public void update(double scrollAmount) {
         this.entries.clear();
-        this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.ABBREVIATION, playerPronouns.abbreviation(), false));
+        this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.ABBREVIATION, playerPronouns.getAbbreviation(), false));
 
-        for (int i = 0; i < playerPronouns.pronounSets().length; ++i) {
-            PronounSet set = playerPronouns.pronounSets()[i];
+        for (int i = 0; i < playerPronouns.getPronounSets().length; ++i) {
+            PronounSet set = playerPronouns.getPronounSets()[i];
 
             if (selected[i]) {
                 this.entries.add(new ViewPronounsSetEntry(this.client, this, i, true));
 
-                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.WEIGHT, Integer.toString(set.weight()), true));
-                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.SINGULAR, Boolean.toString(set.singular()), true));
-                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.SUBJECTIVE, set.subjective(), true));
-                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.OBJECTIVE, set.objective(), true));
-                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.POSSESSIVE_DETERMINER, set.possessiveDeterminer(), true));
-                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.POSSESSIVE_PRONOUN, set.possessivePronoun(), true));
-                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.REFLEXIVE, set.reflexive(), true));
+                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.WEIGHT, Integer.toString(set.getWeight()), true));
+                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.SINGULAR, Boolean.toString(set.isSingular()), true));
+                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.SUBJECTIVE, set.getSubjective(), true));
+                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.OBJECTIVE, set.getObjective(), true));
+                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.POSSESSIVE_DETERMINER, set.getPossessiveDeterminer(), true));
+                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.POSSESSIVE_PRONOUN, set.getPossessivePronoun(), true));
+                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.REFLEXIVE, set.getReflexive(), true));
 
             } else {
                 this.entries.add(new ViewPronounsSetEntry(this.client, this, i, false));
