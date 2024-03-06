@@ -1,5 +1,8 @@
 package net.pneumono.pronouns.pronouns;
 
+/**
+ * This class mostly just provides a few common pronoun sets so nobody has to bother making them manually.
+ */
 @SuppressWarnings("unused")
 public class Presets {
     public static PronounSet getHeHimSet() {
@@ -63,6 +66,13 @@ public class Presets {
         return new PlayerPronouns(new PronounSet[]{getItItsSet()}, "it/its");
     }
 
+    /**
+     * Only includes he/him, she/her, and they/them.
+     */
+    public static PlayerPronouns getAnyPronouns() {
+        return new PlayerPronouns(new PronounSet[]{getHeHimSet(), getSheHerSet(), getTheyThemSet()}, "any");
+    }
+
     public static PlayerPronouns[] getAllPronouns() {
         return new PlayerPronouns[]{
                 getHeHimPronouns(),
@@ -73,7 +83,8 @@ public class Presets {
                 getSheItPronouns(),
                 getTheyThemPronouns(),
                 getTheyItPronouns(),
-                getItItsPronouns()
+                getItItsPronouns(),
+                getAnyPronouns()
         };
     }
 }
