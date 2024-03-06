@@ -20,8 +20,8 @@
     "gui.pronouns.pronoun_type.possessive_pronoun": "Possessive Pronoun",
     "gui.pronouns.pronoun_type.reflexive": "Reflexive",
     "gui.pronouns.no_pronouns": "This player has not set their pronouns!",
-    "gui.server_pronouns.search_hint": "Search...",
-    "gui.server_pronouns.search_empty": "Couldn't find any players with that name",
+    "gui.pronouns.search_hint": "Search...",
+    "gui.pronouns.search_empty": "Couldn't find any players with that name",
     "gui.pronouns.example_message.singular": "%S$p is playing Minecraft, %k$p pronouns are %s, and this text, which is %p%p, talks about %o$p. I hope %s%p is taking care of %r%p!",
     "gui.pronouns.example_message.plural": "%S$p are playing Minecraft, %k$p pronouns are %s, and this text, which is %p%p, talks about %o$p. I hope %s%p are taking care of %r%p!",
 
