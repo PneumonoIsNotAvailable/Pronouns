@@ -13,6 +13,8 @@ import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounSet;
 import net.pneumono.pronouns.screen.AbstractPronounsSetEntry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EditPronounsSetEntry extends AbstractPronounsSetEntry {
@@ -46,9 +48,9 @@ public class EditPronounsSetEntry extends AbstractPronounsSetEntry {
     }
 
     private PlayerPronouns getPronounsWithout() {
-        PronounSet[] oldSets = parent.playerPronouns.getPronounSets();
-        PronounSet[] newSets = new PronounSet[oldSets.length - 1];
-        System.arraycopy(oldSets, 0, newSets, 0, newSets.length);
+        List<PronounSet> list = new ArrayList<>(Arrays.asList(parent.playerPronouns.getPronounSets()));
+        list.remove(index);
+        PronounSet[] newSets = list.toArray(new PronounSet[0]);
 
         return new PlayerPronouns(newSets, parent.playerPronouns.getAbbreviation());
     }
