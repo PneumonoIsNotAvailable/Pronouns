@@ -12,7 +12,7 @@ import net.pneumono.pronouns.Pronouns;
 
 import java.util.List;
 
-public class AbstractPronounsSetEntry extends AbstractPronounsEntry {
+public abstract class AbstractPronounsSetEntry extends AbstractPronounsEntry {
     protected final AbstractPronounsPlayerWidget parent;
     protected final int index;
     protected final boolean dropped;
