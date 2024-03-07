@@ -1,9 +1,11 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.view;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.text.Text;
+import net.pneumono.pronouns.screen.AbstractPronounsEntry;
+import net.pneumono.pronouns.screen.EntryType;
 
 import java.util.List;
 

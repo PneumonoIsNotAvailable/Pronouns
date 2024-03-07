@@ -1,4 +1,4 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.presets;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ElementListWidget;

@@ -9,7 +9,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.pneumono.pronouns.network.DistributePronounsS2CPacket;
 import net.pneumono.pronouns.pronouns.PronounsClientApi;
-import net.pneumono.pronouns.screen.ServerPronounsScreen;
+import net.pneumono.pronouns.screen.server.ServerPronounsScreen;
 import org.lwjgl.glfw.GLFW;
 
 public class PronounsClient implements ClientModInitializer {

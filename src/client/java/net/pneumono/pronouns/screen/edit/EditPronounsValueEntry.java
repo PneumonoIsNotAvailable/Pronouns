@@ -1,4 +1,4 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.edit;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -9,6 +9,8 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounSet;
+import net.pneumono.pronouns.screen.EntryType;
+import net.pneumono.pronouns.screen.view.ViewPronounsValueEntry;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;

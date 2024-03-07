@@ -1,4 +1,4 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.presets;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -9,6 +9,7 @@ import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.ColorHelper;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
+import net.pneumono.pronouns.screen.edit.EditPronounsScreen;
 
 import java.util.List;
 

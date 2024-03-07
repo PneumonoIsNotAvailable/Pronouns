@@ -1,8 +1,10 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.edit;
 
 import net.minecraft.client.MinecraftClient;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounSet;
+import net.pneumono.pronouns.screen.AbstractPronounsPlayerWidget;
+import net.pneumono.pronouns.screen.EntryType;
 
 public class EditPronounsPlayerWidget extends AbstractPronounsPlayerWidget {
     public EditPronounsPlayerWidget(MinecraftClient minecraftClient, int width, int height, int top, int bottom, int itemHeight, PlayerPronouns playerPronouns) {

@@ -4,7 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.pneumono.pronouns.pronouns.PronounsClientApi;
-import net.pneumono.pronouns.screen.SetupPronounsScreen;
+import net.pneumono.pronouns.screen.edit.SetupPronounsScreen;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

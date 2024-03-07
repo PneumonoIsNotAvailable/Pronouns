@@ -1,4 +1,4 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.presets;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -9,6 +9,7 @@ import net.minecraft.util.math.ColorHelper;
 import net.pneumono.pronouns.Pronouns;
 import net.pneumono.pronouns.PronounsClient;
 import net.pneumono.pronouns.pronouns.PronounsClientApi;
+import net.pneumono.pronouns.screen.edit.EditPronounsScreen;
 
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ public class PresetsScreen extends Screen {
     protected ButtonWidget backButton;
     protected boolean initialized;
 
-    protected PresetsScreen(Text previousTitle, boolean inGame) {
+    public PresetsScreen(Text previousTitle, boolean inGame) {
         super(Text.translatable("gui.pronouns.presets"));
         this.previousTitle = previousTitle;
         this.inGame = inGame;

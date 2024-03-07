@@ -1,4 +1,4 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.server;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 import net.pneumono.pronouns.Pronouns;
 import net.pneumono.pronouns.PronounsClient;
 import net.pneumono.pronouns.pronouns.PronounsClientApi;
+import net.pneumono.pronouns.screen.edit.EditPronounsScreen;
 
 import java.util.Collection;
 import java.util.Locale;

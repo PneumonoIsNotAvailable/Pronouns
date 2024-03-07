@@ -1,4 +1,4 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.server;
 
 import com.google.common.collect.Lists;
 import net.minecraft.client.MinecraftClient;

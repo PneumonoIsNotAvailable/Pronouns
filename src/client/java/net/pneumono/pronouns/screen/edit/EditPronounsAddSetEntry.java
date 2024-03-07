@@ -1,4 +1,4 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.edit;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -12,6 +12,7 @@ import net.pneumono.pronouns.Pronouns;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounSet;
 import net.pneumono.pronouns.pronouns.PronounsApi;
+import net.pneumono.pronouns.screen.AbstractPronounsEntry;
 
 import java.util.List;
 

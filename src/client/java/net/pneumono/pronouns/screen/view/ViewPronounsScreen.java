@@ -1,9 +1,12 @@
-package net.pneumono.pronouns.screen;
+package net.pneumono.pronouns.screen.view;
 
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.pneumono.pronouns.PronounsClient;
 import net.pneumono.pronouns.pronouns.PronounsApi;
+import net.pneumono.pronouns.screen.AbstractPronounsPlayerWidget;
+import net.pneumono.pronouns.screen.AbstractPronounsScreen;
+import net.pneumono.pronouns.screen.server.ServerPronounsScreen;
 
 import java.util.Objects;
 import java.util.UUID;
