@@ -12,10 +12,10 @@ import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper;
 import net.pneumono.pronouns.Pronouns;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounsApi;
+import net.pneumono.pronouns.screen.AbstractPronounsScreen;
 import net.pneumono.pronouns.screen.view.ViewPronounsScreen;
 
 import java.util.List;
@@ -29,10 +29,6 @@ public class ServerPronounsPlayerListEntry extends ElementListWidget.Entry<Serve
     private final Supplier<Identifier> skinTexture;
     private final ViewPronounsIconWidget viewWidget;
     private final NoPronounsIconWidget noWidget;
-
-    public static final int WHITE_COLOR = ColorHelper.Argb.getArgb(255, 255, 255, 255);
-    public static final int RED_COLOR = ColorHelper.Argb.getArgb(255, 255, 85, 85);
-    public static final int GRAY_COLOR = ColorHelper.Argb.getArgb(255, 74, 74, 74);
 
     public ServerPronounsPlayerListEntry(MinecraftClient client, UUID uuid, String name, Supplier<Identifier> skinTexture) {
         this.client = client;
@@ -50,7 +46,7 @@ public class ServerPronounsPlayerListEntry extends ElementListWidget.Entry<Serve
         int k = i + 24 + 4;
         int l = y + (entryHeight - this.client.textRenderer.fontHeight) / 2;
 
-        context.fill(x, y, x + entryWidth, y + entryHeight, GRAY_COLOR);
+        context.fill(x, y, x + entryWidth, y + entryHeight, AbstractPronounsScreen.GRAY_COLOR);
         PlayerSkinDrawer.draw(context, this.skinTexture.get(), i, j, 24);
 
         PlayerPronouns pronouns = PronounsApi.getPlayerPronounsNullable(this.uuid);
@@ -67,7 +63,7 @@ public class ServerPronounsPlayerListEntry extends ElementListWidget.Entry<Serve
         }
 
         String appended = hasPronouns ? " (" + pronouns.getAbbreviation() + ")" : "";
-        context.drawText(this.client.textRenderer, this.name + appended, k, l, hasPronouns ? WHITE_COLOR : RED_COLOR, false);
+        context.drawText(this.client.textRenderer, this.name + appended, k, l, hasPronouns ? AbstractPronounsScreen.WHITE_COLOR : AbstractPronounsScreen.RED_COLOR, false);
     }
 
     @Override

@@ -13,6 +13,7 @@ import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounSet;
 import net.pneumono.pronouns.pronouns.PronounsApi;
 import net.pneumono.pronouns.screen.AbstractPronounsEntry;
+import net.pneumono.pronouns.screen.AbstractPronounsScreen;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class EditPronounsAddSetEntry extends AbstractPronounsEntry {
         int textX = x + 28;
         int textY = y + (entryHeight - this.client.textRenderer.fontHeight) / 2 + 1;
 
-        context.drawText(this.client.textRenderer, getText(), textX + indentation, textY, WHITE_COLOR, false);
+        context.drawText(this.client.textRenderer, getText(), textX + indentation, textY, AbstractPronounsScreen.WHITE_COLOR, false);
 
         this.addWidget.setX(x + 5);
         this.addWidget.setY(y);

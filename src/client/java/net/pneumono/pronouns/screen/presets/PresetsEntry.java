@@ -7,16 +7,13 @@ import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.ColorHelper;
 import net.pneumono.pronouns.pronouns.PlayerPronouns;
+import net.pneumono.pronouns.screen.AbstractPronounsScreen;
 import net.pneumono.pronouns.screen.edit.EditPronounsScreen;
 
 import java.util.List;
 
 public class PresetsEntry extends ElementListWidget.Entry<PresetsEntry> {
-    public static final int WHITE_COLOR = ColorHelper.Argb.getArgb(255, 255, 255, 255);
-    public static final int GRAY_COLOR = ColorHelper.Argb.getArgb(255, 74, 74, 74);
-
     protected MinecraftClient client;
     protected PlayerPronouns pronouns;
     protected Text previousTitle;
@@ -49,9 +46,9 @@ public class PresetsEntry extends ElementListWidget.Entry<PresetsEntry> {
         int textX = x + 5;
         int textY = y + (entryHeight - this.client.textRenderer.fontHeight) / 2 + 1;
 
-        context.fill(x, y, x + entryWidth, y + entryHeight, GRAY_COLOR);
+        context.fill(x, y, x + entryWidth, y + entryHeight, AbstractPronounsScreen.GRAY_COLOR);
 
-        context.drawText(this.client.textRenderer, this.pronouns.getAbbreviation(), textX, textY, WHITE_COLOR, false);
+        context.drawText(this.client.textRenderer, this.pronouns.getAbbreviation(), textX, textY, AbstractPronounsScreen.WHITE_COLOR, false);
 
         selectWidget.setX(x + 150);
         selectWidget.setY(y);

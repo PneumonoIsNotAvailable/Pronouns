@@ -5,17 +5,16 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper;
 import net.pneumono.pronouns.Pronouns;
 import net.pneumono.pronouns.PronounsClient;
 import net.pneumono.pronouns.pronouns.PronounsClientApi;
+import net.pneumono.pronouns.screen.AbstractPronounsScreen;
 import net.pneumono.pronouns.screen.edit.EditPronounsScreen;
 
 import java.util.Objects;
 
 public class PresetsScreen extends Screen {
     public static final Identifier VIEW_PRONOUNS_TEXTURE = new Identifier(Pronouns.MOD_ID, "textures/gui/pronouns.png");
-    public static final int WHITE_COLOR = ColorHelper.Argb.getArgb(255, 255, 255, 255);
 
     protected final Text previousTitle;
     protected final boolean inGame;
@@ -76,7 +75,7 @@ public class PresetsScreen extends Screen {
         this.presetsWidget.render(context, mouseX, mouseY, delta);
         this.backButton.render(context, mouseX, mouseY, delta);
 
-        context.drawText(Objects.requireNonNull(this.client).textRenderer, this.title, this.width / 2 - 103, 77, WHITE_COLOR, false);
+        context.drawText(Objects.requireNonNull(this.client).textRenderer, this.title, this.width / 2 - 103, 77, AbstractPronounsScreen.WHITE_COLOR, false);
         super.render(context, mouseX, mouseY, delta);
     }
 

@@ -13,6 +13,8 @@ import java.util.Objects;
 public abstract class AbstractPronounsScreen extends Screen {
     public static final Identifier VIEW_PRONOUNS_TEXTURE = new Identifier(Pronouns.MOD_ID, "textures/gui/pronouns.png");
     public static final int WHITE_COLOR = ColorHelper.Argb.getArgb(255, 255, 255, 255);
+    public static final int GRAY_COLOR = ColorHelper.Argb.getArgb(255, 74, 74, 74);
+    public static final int RED_COLOR = ColorHelper.Argb.getArgb(255, 255, 85, 85);
 
     protected AbstractPronounsPlayerWidget playerWidget;
     protected ButtonWidget backButton;
