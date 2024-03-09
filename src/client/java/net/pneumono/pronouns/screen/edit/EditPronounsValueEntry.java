@@ -11,7 +11,6 @@ import net.pneumono.pronouns.pronouns.PlayerPronouns;
 import net.pneumono.pronouns.pronouns.PronounSet;
 import net.pneumono.pronouns.screen.EntryType;
 import net.pneumono.pronouns.screen.view.ViewPronounsValueEntry;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -35,11 +34,7 @@ public class EditPronounsValueEntry extends ViewPronounsValueEntry {
 
         this.textWidget = new TextFieldWidget(this.client.textRenderer, 0, 0, 65, 20, null, getText());
         this.textWidget.setText(value);
-        this.textWidget.setChangedListener(text -> {
-            if (this.type != EntryType.WEIGHT || StringUtils.isNumeric(text)) {
-                this.parent.setPlayerPronounsNoUpdate(getPronounsWithValue(text));
-            }
-        });
+        this.textWidget.setChangedListener(text -> this.parent.setPlayerPronounsNoUpdate(getPronounsWithValue(text)));
     }
 
     private PlayerPronouns getPronounsWithValue(String value) {
@@ -51,7 +46,6 @@ public class EditPronounsValueEntry extends ViewPronounsValueEntry {
         PronounSet oldSet = sets[index];
 
         sets[index] = switch (type) {
-            case WEIGHT -> oldSet.setWeight(Integer.parseInt(value));
             case SINGULAR -> oldSet.setSingular(Boolean.parseBoolean(value));
             case SUBJECTIVE -> oldSet.setSubjective(value);
             case OBJECTIVE -> oldSet.setObjective(value);

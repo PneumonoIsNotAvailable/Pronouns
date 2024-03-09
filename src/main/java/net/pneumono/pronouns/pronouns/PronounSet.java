@@ -3,10 +3,8 @@ package net.pneumono.pronouns.pronouns;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import net.minecraft.util.math.MathHelper;
 
 public class PronounSet {
-    private int weight;
     private boolean singular;
     private String subjective;
     private String objective;
@@ -14,8 +12,7 @@ public class PronounSet {
     private String possessivePronoun;
     private String reflexive;
 
-    public PronounSet(int weight, boolean singular, String subjective, String objective, String possessiveDeterminer, String possessivePronoun, String reflexive) {
-        this.weight = MathHelper.clamp(weight, 1, 10);
+    public PronounSet(boolean singular, String subjective, String objective, String possessiveDeterminer, String possessivePronoun, String reflexive) {
         this.singular = singular;
         this.subjective = subjective;
         this.objective = objective;
@@ -26,18 +23,12 @@ public class PronounSet {
 
     public static PronounSet fromJson(JsonObject json) {
         JsonPrimitive primitive;
-        int weight = -1;
         String subjective = "";
         String objective = "";
         String possessiveDeterminer = "";
         String possessivePronoun = "";
         String reflexive = "";
         boolean singular = true;
-
-        primitive = json.getAsJsonPrimitive("weight");
-        if (primitive != null) {
-            weight = primitive.getAsInt();
-        }
 
         primitive = json.getAsJsonPrimitive("subjective");
         if (primitive != null) {
@@ -69,13 +60,12 @@ public class PronounSet {
             singular = primitive.getAsBoolean();
         }
 
-        return new PronounSet(weight, singular, subjective, objective, possessiveDeterminer, possessivePronoun, reflexive);
+        return new PronounSet(singular, subjective, objective, possessiveDeterminer, possessivePronoun, reflexive);
     }
 
     public JsonObject toJson() {
         JsonObject setObject = new JsonObject();
 
-        setObject.add("weight", new JsonPrimitive(weight));
         setObject.add("subjective", new JsonPrimitive(subjective));
         setObject.add("objective", new JsonPrimitive(objective));
         setObject.add("possessive_determiner", new JsonPrimitive(possessiveDeterminer));
@@ -94,10 +84,6 @@ public class PronounSet {
         }
 
         return array;
-    }
-
-    public int getWeight() {
-        return this.weight;
     }
 
     public boolean isSingular() {
@@ -122,11 +108,6 @@ public class PronounSet {
 
     public String getReflexive() {
         return this.reflexive;
-    }
-
-    public PronounSet setWeight(int weight) {
-        this.weight = weight;
-        return this;
     }
 
     public PronounSet setSingular(boolean singular) {

@@ -6,19 +6,19 @@ package net.pneumono.pronouns.pronouns;
 @SuppressWarnings("unused")
 public class Presets {
     public static PronounSet getHeHimSet() {
-        return new PronounSet(1, true, "he", "him", "his", "his", "himself");
+        return new PronounSet(true, "he", "him", "his", "his", "himself");
     }
 
     public static PronounSet getSheHerSet() {
-        return new PronounSet(1, true, "she", "her", "her", "hers", "herself");
+        return new PronounSet(true, "she", "her", "her", "hers", "herself");
     }
 
     public static PronounSet getTheyThemSet() {
-        return new PronounSet(1, false, "they", "them", "their", "theirs", "themselves");
+        return new PronounSet(false, "they", "them", "their", "theirs", "themselves");
     }
 
     public static PronounSet getItItsSet() {
-        return new PronounSet(1, true, "it", "it", "its", "its", "itself");
+        return new PronounSet(true, "it", "it", "its", "its", "itself");
     }
 
     public static PronounSet[] getAllSets() {

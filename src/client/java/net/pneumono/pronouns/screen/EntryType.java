@@ -2,7 +2,6 @@ package net.pneumono.pronouns.screen;
 
 public enum EntryType {
     ABBREVIATION,
-    WEIGHT,
     SINGULAR,
     SUBJECTIVE,
     OBJECTIVE,

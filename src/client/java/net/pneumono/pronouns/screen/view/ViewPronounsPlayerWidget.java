@@ -21,7 +21,6 @@ public class ViewPronounsPlayerWidget extends AbstractPronounsPlayerWidget {
             if (selected[i]) {
                 this.entries.add(new ViewPronounsSetEntry(this.client, this, i, true));
 
-                this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.WEIGHT, Integer.toString(set.getWeight()), true));
                 this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.SINGULAR, Boolean.toString(set.isSingular()), true));
                 this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.SUBJECTIVE, set.getSubjective(), true));
                 this.entries.add(new ViewPronounsValueEntry(this.client, EntryType.OBJECTIVE, set.getObjective(), true));

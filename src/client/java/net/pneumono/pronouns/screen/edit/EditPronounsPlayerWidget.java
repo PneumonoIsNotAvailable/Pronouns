@@ -29,7 +29,6 @@ public class EditPronounsPlayerWidget extends AbstractPronounsPlayerWidget {
             if (selected[i]) {
                 this.entries.add(new EditPronounsSetEntry(this.client, this, i, true, alone));
 
-                this.entries.add(new EditPronounsValueEntry(this.client, this, i, EntryType.WEIGHT, Integer.toString(set.getWeight()), true));
                 this.entries.add(new EditPronounsValueEntry(this.client, this, i, EntryType.SINGULAR, Boolean.toString(set.isSingular()), true));
                 this.entries.add(new EditPronounsValueEntry(this.client, this, i, EntryType.SUBJECTIVE, set.getSubjective(), true));
                 this.entries.add(new EditPronounsValueEntry(this.client, this, i, EntryType.OBJECTIVE, set.getObjective(), true));
